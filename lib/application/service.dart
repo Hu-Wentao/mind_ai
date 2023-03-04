@@ -4,7 +4,7 @@ import 'package:mind_ai/domain/domain.dart';
 import '../domain/config/const.dart';
 
 final dio = Dio(BaseOptions(
-  baseUrl: 'http://0.0.0.0:21772',
+  baseUrl: baseUrl,
   headers: {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer $apiKey',
