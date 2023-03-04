@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mind_ai/service.dart';
+import 'package:mind_ai/application/service.dart';
+
+import 'domain/domain.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,19 +13,19 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Mind AI',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
+  const MyHomePage({
+    super.key,
+  });
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -35,9 +37,73 @@ class _MyHomePageState extends State<MyHomePage> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text(widget.title),
+          title: Text(
+            'Mind AI',
+            style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
+          ),
+          actions: [
+            Container(
+                alignment: Alignment.center,
+                child: Text(
+                  "当前模型：",
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleMedium!
+                      .copyWith(color: Colors.white),
+                )),
+            const ChatModelSwitcher(),
+          ],
         ),
         body: ChatScreen(),
+      ),
+    );
+  }
+}
+
+class ChatModelSwitcher extends StatefulWidget {
+  const ChatModelSwitcher({
+    super.key,
+  });
+
+  @override
+  State<ChatModelSwitcher> createState() => _ChatModelSwitcherState();
+}
+
+class _ChatModelSwitcherState extends State<ChatModelSwitcher> {
+  late ModelTp chosenTp;
+  @override
+  void initState() {
+    chosenTp = ModelTp.gpt35turbo;
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: DropdownButton(
+        value: chosenTp,
+        selectedItemBuilder: (c) {
+          final style =
+              Theme.of(c).textTheme.titleMedium!.copyWith(color: Colors.white);
+          return [
+            Center(child: Text('GPT-3.5', style: style)),
+          ];
+        },
+        items: const [
+          DropdownMenuItem(
+            value: ModelTp.gpt35turbo,
+            child: Text('GPT-3.5'),
+          ),
+        ],
+        onChanged: (tp) {
+          print("debug tp $tp");
+          setState(() {
+            chosenTp = tp!;
+          });
+        },
       ),
     );
   }
@@ -54,7 +120,12 @@ class ChatScreen extends StatefulWidget {
 
 class _ChatScreenState extends State<ChatScreen> {
   late final TextEditingController? controller;
-  List<MsgDto> msgLs = List.empty();
+  MsgGpt35 msg = const MsgGpt35(
+    from_id: 'from_id',
+    to_id: 'to_id',
+    content: [],
+    model_id: 'model_id',
+  );
 
   @override
   void initState() {
@@ -73,7 +144,7 @@ class _ChatScreenState extends State<ChatScreen> {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  for (final m in msgLs)
+                  for (final m in msg.content)
                     ListTile(
                       title: Text(m.role),
                       subtitle: Text(m.content),
@@ -96,10 +167,7 @@ class _ChatScreenState extends State<ChatScreen> {
               IconButton(
                 icon: const Icon(Icons.send),
                 onPressed: () async {
-                  msgLs = (await chatService.chat(msgLs))
-                      .choices
-                      .map((e) => e.message)
-                      .toList();
+                  msg = msg.mergeContent(await chatService.chat(msg));
                   setState(() {});
                 },
               ),
