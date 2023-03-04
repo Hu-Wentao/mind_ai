@@ -23,8 +23,8 @@ mixin _$MsgDto {
   String get from_id => throw _privateConstructorUsedError;
   String get to_id => throw _privateConstructorUsedError;
   String get content => throw _privateConstructorUsedError;
-  String get conversation_id => throw _privateConstructorUsedError;
-  String get parent_id => throw _privateConstructorUsedError;
+  String? get conversation_id => throw _privateConstructorUsedError;
+  String? get parent_id => throw _privateConstructorUsedError;
   String get model_id => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -41,8 +41,8 @@ abstract class $MsgDtoCopyWith<$Res> {
       {String from_id,
       String to_id,
       String content,
-      String conversation_id,
-      String parent_id,
+      String? conversation_id,
+      String? parent_id,
       String model_id});
 }
 
@@ -62,8 +62,8 @@ class _$MsgDtoCopyWithImpl<$Res, $Val extends MsgDto>
     Object? from_id = null,
     Object? to_id = null,
     Object? content = null,
-    Object? conversation_id = null,
-    Object? parent_id = null,
+    Object? conversation_id = freezed,
+    Object? parent_id = freezed,
     Object? model_id = null,
   }) {
     return _then(_value.copyWith(
@@ -79,14 +79,14 @@ class _$MsgDtoCopyWithImpl<$Res, $Val extends MsgDto>
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
               as String,
-      conversation_id: null == conversation_id
+      conversation_id: freezed == conversation_id
           ? _value.conversation_id
           : conversation_id // ignore: cast_nullable_to_non_nullable
-              as String,
-      parent_id: null == parent_id
+              as String?,
+      parent_id: freezed == parent_id
           ? _value.parent_id
           : parent_id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       model_id: null == model_id
           ? _value.model_id
           : model_id // ignore: cast_nullable_to_non_nullable
@@ -105,8 +105,8 @@ abstract class _$$_MsgDtoCopyWith<$Res> implements $MsgDtoCopyWith<$Res> {
       {String from_id,
       String to_id,
       String content,
-      String conversation_id,
-      String parent_id,
+      String? conversation_id,
+      String? parent_id,
       String model_id});
 }
 
@@ -123,8 +123,8 @@ class __$$_MsgDtoCopyWithImpl<$Res>
     Object? from_id = null,
     Object? to_id = null,
     Object? content = null,
-    Object? conversation_id = null,
-    Object? parent_id = null,
+    Object? conversation_id = freezed,
+    Object? parent_id = freezed,
     Object? model_id = null,
   }) {
     return _then(_$_MsgDto(
@@ -140,14 +140,14 @@ class __$$_MsgDtoCopyWithImpl<$Res>
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
               as String,
-      conversation_id: null == conversation_id
+      conversation_id: freezed == conversation_id
           ? _value.conversation_id
           : conversation_id // ignore: cast_nullable_to_non_nullable
-              as String,
-      parent_id: null == parent_id
+              as String?,
+      parent_id: freezed == parent_id
           ? _value.parent_id
           : parent_id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       model_id: null == model_id
           ? _value.model_id
           : model_id // ignore: cast_nullable_to_non_nullable
@@ -163,8 +163,8 @@ class _$_MsgDto implements _MsgDto {
       {required this.from_id,
       required this.to_id,
       required this.content,
-      required this.conversation_id,
-      required this.parent_id,
+      this.conversation_id,
+      this.parent_id,
       required this.model_id});
 
   factory _$_MsgDto.fromJson(Map<String, dynamic> json) =>
@@ -177,9 +177,9 @@ class _$_MsgDto implements _MsgDto {
   @override
   final String content;
   @override
-  final String conversation_id;
+  final String? conversation_id;
   @override
-  final String parent_id;
+  final String? parent_id;
   @override
   final String model_id;
 
@@ -228,8 +228,8 @@ abstract class _MsgDto implements MsgDto {
       {required final String from_id,
       required final String to_id,
       required final String content,
-      required final String conversation_id,
-      required final String parent_id,
+      final String? conversation_id,
+      final String? parent_id,
       required final String model_id}) = _$_MsgDto;
 
   factory _MsgDto.fromJson(Map<String, dynamic> json) = _$_MsgDto.fromJson;
@@ -241,9 +241,9 @@ abstract class _MsgDto implements MsgDto {
   @override
   String get content;
   @override
-  String get conversation_id;
+  String? get conversation_id;
   @override
-  String get parent_id;
+  String? get parent_id;
   @override
   String get model_id;
   @override
@@ -258,8 +258,9 @@ Gpt35ContentDto _$Gpt35ContentDtoFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Gpt35ContentDto {
-  String get role => throw _privateConstructorUsedError;
-  String get content => throw _privateConstructorUsedError;
+  int get index => throw _privateConstructorUsedError;
+  Gpt35ContentMsgDto get message => throw _privateConstructorUsedError;
+  String get finishReason => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -273,13 +274,198 @@ abstract class $Gpt35ContentDtoCopyWith<$Res> {
           Gpt35ContentDto value, $Res Function(Gpt35ContentDto) then) =
       _$Gpt35ContentDtoCopyWithImpl<$Res, Gpt35ContentDto>;
   @useResult
-  $Res call({String role, String content});
+  $Res call({int index, Gpt35ContentMsgDto message, String finishReason});
+
+  $Gpt35ContentMsgDtoCopyWith<$Res> get message;
 }
 
 /// @nodoc
 class _$Gpt35ContentDtoCopyWithImpl<$Res, $Val extends Gpt35ContentDto>
     implements $Gpt35ContentDtoCopyWith<$Res> {
   _$Gpt35ContentDtoCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? index = null,
+    Object? message = null,
+    Object? finishReason = null,
+  }) {
+    return _then(_value.copyWith(
+      index: null == index
+          ? _value.index
+          : index // ignore: cast_nullable_to_non_nullable
+              as int,
+      message: null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as Gpt35ContentMsgDto,
+      finishReason: null == finishReason
+          ? _value.finishReason
+          : finishReason // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $Gpt35ContentMsgDtoCopyWith<$Res> get message {
+    return $Gpt35ContentMsgDtoCopyWith<$Res>(_value.message, (value) {
+      return _then(_value.copyWith(message: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$_Gpt35ContentDtoCopyWith<$Res>
+    implements $Gpt35ContentDtoCopyWith<$Res> {
+  factory _$$_Gpt35ContentDtoCopyWith(
+          _$_Gpt35ContentDto value, $Res Function(_$_Gpt35ContentDto) then) =
+      __$$_Gpt35ContentDtoCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({int index, Gpt35ContentMsgDto message, String finishReason});
+
+  @override
+  $Gpt35ContentMsgDtoCopyWith<$Res> get message;
+}
+
+/// @nodoc
+class __$$_Gpt35ContentDtoCopyWithImpl<$Res>
+    extends _$Gpt35ContentDtoCopyWithImpl<$Res, _$_Gpt35ContentDto>
+    implements _$$_Gpt35ContentDtoCopyWith<$Res> {
+  __$$_Gpt35ContentDtoCopyWithImpl(
+      _$_Gpt35ContentDto _value, $Res Function(_$_Gpt35ContentDto) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? index = null,
+    Object? message = null,
+    Object? finishReason = null,
+  }) {
+    return _then(_$_Gpt35ContentDto(
+      index: null == index
+          ? _value.index
+          : index // ignore: cast_nullable_to_non_nullable
+              as int,
+      message: null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as Gpt35ContentMsgDto,
+      finishReason: null == finishReason
+          ? _value.finishReason
+          : finishReason // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_Gpt35ContentDto implements _Gpt35ContentDto {
+  const _$_Gpt35ContentDto(
+      {required this.index, required this.message, required this.finishReason});
+
+  factory _$_Gpt35ContentDto.fromJson(Map<String, dynamic> json) =>
+      _$$_Gpt35ContentDtoFromJson(json);
+
+  @override
+  final int index;
+  @override
+  final Gpt35ContentMsgDto message;
+  @override
+  final String finishReason;
+
+  @override
+  String toString() {
+    return 'Gpt35ContentDto(index: $index, message: $message, finishReason: $finishReason)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_Gpt35ContentDto &&
+            (identical(other.index, index) || other.index == index) &&
+            (identical(other.message, message) || other.message == message) &&
+            (identical(other.finishReason, finishReason) ||
+                other.finishReason == finishReason));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, index, message, finishReason);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_Gpt35ContentDtoCopyWith<_$_Gpt35ContentDto> get copyWith =>
+      __$$_Gpt35ContentDtoCopyWithImpl<_$_Gpt35ContentDto>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_Gpt35ContentDtoToJson(
+      this,
+    );
+  }
+}
+
+abstract class _Gpt35ContentDto implements Gpt35ContentDto {
+  const factory _Gpt35ContentDto(
+      {required final int index,
+      required final Gpt35ContentMsgDto message,
+      required final String finishReason}) = _$_Gpt35ContentDto;
+
+  factory _Gpt35ContentDto.fromJson(Map<String, dynamic> json) =
+      _$_Gpt35ContentDto.fromJson;
+
+  @override
+  int get index;
+  @override
+  Gpt35ContentMsgDto get message;
+  @override
+  String get finishReason;
+  @override
+  @JsonKey(ignore: true)
+  _$$_Gpt35ContentDtoCopyWith<_$_Gpt35ContentDto> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+Gpt35ContentMsgDto _$Gpt35ContentMsgDtoFromJson(Map<String, dynamic> json) {
+  return _Gpt35ContentMsgDto.fromJson(json);
+}
+
+/// @nodoc
+mixin _$Gpt35ContentMsgDto {
+  String get role => throw _privateConstructorUsedError;
+  String get content => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $Gpt35ContentMsgDtoCopyWith<Gpt35ContentMsgDto> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $Gpt35ContentMsgDtoCopyWith<$Res> {
+  factory $Gpt35ContentMsgDtoCopyWith(
+          Gpt35ContentMsgDto value, $Res Function(Gpt35ContentMsgDto) then) =
+      _$Gpt35ContentMsgDtoCopyWithImpl<$Res, Gpt35ContentMsgDto>;
+  @useResult
+  $Res call({String role, String content});
+}
+
+/// @nodoc
+class _$Gpt35ContentMsgDtoCopyWithImpl<$Res, $Val extends Gpt35ContentMsgDto>
+    implements $Gpt35ContentMsgDtoCopyWith<$Res> {
+  _$Gpt35ContentMsgDtoCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -306,22 +492,22 @@ class _$Gpt35ContentDtoCopyWithImpl<$Res, $Val extends Gpt35ContentDto>
 }
 
 /// @nodoc
-abstract class _$$_Gpt35ContentDtoCopyWith<$Res>
-    implements $Gpt35ContentDtoCopyWith<$Res> {
-  factory _$$_Gpt35ContentDtoCopyWith(
-          _$_Gpt35ContentDto value, $Res Function(_$_Gpt35ContentDto) then) =
-      __$$_Gpt35ContentDtoCopyWithImpl<$Res>;
+abstract class _$$_Gpt35ContentMsgDtoCopyWith<$Res>
+    implements $Gpt35ContentMsgDtoCopyWith<$Res> {
+  factory _$$_Gpt35ContentMsgDtoCopyWith(_$_Gpt35ContentMsgDto value,
+          $Res Function(_$_Gpt35ContentMsgDto) then) =
+      __$$_Gpt35ContentMsgDtoCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String role, String content});
 }
 
 /// @nodoc
-class __$$_Gpt35ContentDtoCopyWithImpl<$Res>
-    extends _$Gpt35ContentDtoCopyWithImpl<$Res, _$_Gpt35ContentDto>
-    implements _$$_Gpt35ContentDtoCopyWith<$Res> {
-  __$$_Gpt35ContentDtoCopyWithImpl(
-      _$_Gpt35ContentDto _value, $Res Function(_$_Gpt35ContentDto) _then)
+class __$$_Gpt35ContentMsgDtoCopyWithImpl<$Res>
+    extends _$Gpt35ContentMsgDtoCopyWithImpl<$Res, _$_Gpt35ContentMsgDto>
+    implements _$$_Gpt35ContentMsgDtoCopyWith<$Res> {
+  __$$_Gpt35ContentMsgDtoCopyWithImpl(
+      _$_Gpt35ContentMsgDto _value, $Res Function(_$_Gpt35ContentMsgDto) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -330,7 +516,7 @@ class __$$_Gpt35ContentDtoCopyWithImpl<$Res>
     Object? role = null,
     Object? content = null,
   }) {
-    return _then(_$_Gpt35ContentDto(
+    return _then(_$_Gpt35ContentMsgDto(
       role: null == role
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
@@ -345,11 +531,11 @@ class __$$_Gpt35ContentDtoCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Gpt35ContentDto implements _Gpt35ContentDto {
-  const _$_Gpt35ContentDto({required this.role, required this.content});
+class _$_Gpt35ContentMsgDto implements _Gpt35ContentMsgDto {
+  const _$_Gpt35ContentMsgDto({required this.role, required this.content});
 
-  factory _$_Gpt35ContentDto.fromJson(Map<String, dynamic> json) =>
-      _$$_Gpt35ContentDtoFromJson(json);
+  factory _$_Gpt35ContentMsgDto.fromJson(Map<String, dynamic> json) =>
+      _$$_Gpt35ContentMsgDtoFromJson(json);
 
   @override
   final String role;
@@ -358,14 +544,14 @@ class _$_Gpt35ContentDto implements _Gpt35ContentDto {
 
   @override
   String toString() {
-    return 'Gpt35ContentDto(role: $role, content: $content)';
+    return 'Gpt35ContentMsgDto(role: $role, content: $content)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Gpt35ContentDto &&
+            other is _$_Gpt35ContentMsgDto &&
             (identical(other.role, role) || other.role == role) &&
             (identical(other.content, content) || other.content == content));
   }
@@ -377,24 +563,25 @@ class _$_Gpt35ContentDto implements _Gpt35ContentDto {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_Gpt35ContentDtoCopyWith<_$_Gpt35ContentDto> get copyWith =>
-      __$$_Gpt35ContentDtoCopyWithImpl<_$_Gpt35ContentDto>(this, _$identity);
+  _$$_Gpt35ContentMsgDtoCopyWith<_$_Gpt35ContentMsgDto> get copyWith =>
+      __$$_Gpt35ContentMsgDtoCopyWithImpl<_$_Gpt35ContentMsgDto>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_Gpt35ContentDtoToJson(
+    return _$$_Gpt35ContentMsgDtoToJson(
       this,
     );
   }
 }
 
-abstract class _Gpt35ContentDto implements Gpt35ContentDto {
-  const factory _Gpt35ContentDto(
+abstract class _Gpt35ContentMsgDto implements Gpt35ContentMsgDto {
+  const factory _Gpt35ContentMsgDto(
       {required final String role,
-      required final String content}) = _$_Gpt35ContentDto;
+      required final String content}) = _$_Gpt35ContentMsgDto;
 
-  factory _Gpt35ContentDto.fromJson(Map<String, dynamic> json) =
-      _$_Gpt35ContentDto.fromJson;
+  factory _Gpt35ContentMsgDto.fromJson(Map<String, dynamic> json) =
+      _$_Gpt35ContentMsgDto.fromJson;
 
   @override
   String get role;
@@ -402,6 +589,6 @@ abstract class _Gpt35ContentDto implements Gpt35ContentDto {
   String get content;
   @override
   @JsonKey(ignore: true)
-  _$$_Gpt35ContentDtoCopyWith<_$_Gpt35ContentDto> get copyWith =>
+  _$$_Gpt35ContentMsgDtoCopyWith<_$_Gpt35ContentMsgDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
