@@ -260,7 +260,7 @@ Gpt35ChoicesDto _$Gpt35ChoicesDtoFromJson(Map<String, dynamic> json) {
 mixin _$Gpt35ChoicesDto {
   int get index => throw _privateConstructorUsedError;
   MsgGpt35ContentDto get message => throw _privateConstructorUsedError;
-  String get finish_reason => throw _privateConstructorUsedError;
+  String? get finish_reason => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -274,7 +274,7 @@ abstract class $Gpt35ChoicesDtoCopyWith<$Res> {
           Gpt35ChoicesDto value, $Res Function(Gpt35ChoicesDto) then) =
       _$Gpt35ChoicesDtoCopyWithImpl<$Res, Gpt35ChoicesDto>;
   @useResult
-  $Res call({int index, MsgGpt35ContentDto message, String finish_reason});
+  $Res call({int index, MsgGpt35ContentDto message, String? finish_reason});
 
   $MsgGpt35ContentDtoCopyWith<$Res> get message;
 }
@@ -294,7 +294,7 @@ class _$Gpt35ChoicesDtoCopyWithImpl<$Res, $Val extends Gpt35ChoicesDto>
   $Res call({
     Object? index = null,
     Object? message = null,
-    Object? finish_reason = null,
+    Object? finish_reason = freezed,
   }) {
     return _then(_value.copyWith(
       index: null == index
@@ -305,10 +305,10 @@ class _$Gpt35ChoicesDtoCopyWithImpl<$Res, $Val extends Gpt35ChoicesDto>
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as MsgGpt35ContentDto,
-      finish_reason: null == finish_reason
+      finish_reason: freezed == finish_reason
           ? _value.finish_reason
           : finish_reason // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ) as $Val);
   }
 
@@ -329,7 +329,7 @@ abstract class _$$_Gpt35ChoicesDtoCopyWith<$Res>
       __$$_Gpt35ChoicesDtoCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int index, MsgGpt35ContentDto message, String finish_reason});
+  $Res call({int index, MsgGpt35ContentDto message, String? finish_reason});
 
   @override
   $MsgGpt35ContentDtoCopyWith<$Res> get message;
@@ -348,7 +348,7 @@ class __$$_Gpt35ChoicesDtoCopyWithImpl<$Res>
   $Res call({
     Object? index = null,
     Object? message = null,
-    Object? finish_reason = null,
+    Object? finish_reason = freezed,
   }) {
     return _then(_$_Gpt35ChoicesDto(
       index: null == index
@@ -359,10 +359,10 @@ class __$$_Gpt35ChoicesDtoCopyWithImpl<$Res>
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as MsgGpt35ContentDto,
-      finish_reason: null == finish_reason
+      finish_reason: freezed == finish_reason
           ? _value.finish_reason
           : finish_reason // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -371,9 +371,7 @@ class __$$_Gpt35ChoicesDtoCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Gpt35ChoicesDto implements _Gpt35ChoicesDto {
   const _$_Gpt35ChoicesDto(
-      {required this.index,
-      required this.message,
-      required this.finish_reason});
+      {required this.index, required this.message, this.finish_reason});
 
   factory _$_Gpt35ChoicesDto.fromJson(Map<String, dynamic> json) =>
       _$$_Gpt35ChoicesDtoFromJson(json);
@@ -383,7 +381,7 @@ class _$_Gpt35ChoicesDto implements _Gpt35ChoicesDto {
   @override
   final MsgGpt35ContentDto message;
   @override
-  final String finish_reason;
+  final String? finish_reason;
 
   @override
   String toString() {
@@ -423,7 +421,7 @@ abstract class _Gpt35ChoicesDto implements Gpt35ChoicesDto {
   const factory _Gpt35ChoicesDto(
       {required final int index,
       required final MsgGpt35ContentDto message,
-      required final String finish_reason}) = _$_Gpt35ChoicesDto;
+      final String? finish_reason}) = _$_Gpt35ChoicesDto;
 
   factory _Gpt35ChoicesDto.fromJson(Map<String, dynamic> json) =
       _$_Gpt35ChoicesDto.fromJson;
@@ -433,7 +431,7 @@ abstract class _Gpt35ChoicesDto implements Gpt35ChoicesDto {
   @override
   MsgGpt35ContentDto get message;
   @override
-  String get finish_reason;
+  String? get finish_reason;
   @override
   @JsonKey(ignore: true)
   _$$_Gpt35ChoicesDtoCopyWith<_$_Gpt35ChoicesDto> get copyWith =>

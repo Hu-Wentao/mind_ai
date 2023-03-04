@@ -30,7 +30,7 @@ class Gpt35ChoicesDto with _$Gpt35ChoicesDto {
   const factory Gpt35ChoicesDto({
     required int index,
     required MsgGpt35ContentDto message,
-    required String finish_reason,
+    String? finish_reason,
   }) = _Gpt35ChoicesDto;
   factory Gpt35ChoicesDto.fromJson(Map<String, dynamic> json) =>
       _$Gpt35ChoicesDtoFromJson(json);

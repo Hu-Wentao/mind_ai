@@ -29,7 +29,7 @@ _$_Gpt35ChoicesDto _$$_Gpt35ChoicesDtoFromJson(Map<String, dynamic> json) =>
       index: json['index'] as int,
       message:
           MsgGpt35ContentDto.fromJson(json['message'] as Map<String, dynamic>),
-      finish_reason: json['finish_reason'] as String,
+      finish_reason: json['finish_reason'] as String?,
     );
 
 Map<String, dynamic> _$$_Gpt35ChoicesDtoToJson(_$_Gpt35ChoicesDto instance) =>
