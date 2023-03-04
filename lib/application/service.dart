@@ -1,41 +1,27 @@
-import 'dart:convert';
 import 'package:dio/dio.dart';
+import 'package:mind_ai/domain/domain.dart';
 
-const apiKey = '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';
+import '../domain/config/const.dart';
 
-// curl https://api.openai.com/v1/chat/completions \
-//   -H 'Content-Type: application/json' \
-//   -H 'Authorization: Bearer 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' \
-//   -d '{
-//   "model": "gpt-3.5-turbo",
-//   "messages": [{"role": "user", "content": "Hello!"}]
-// }'
 final dio = Dio(BaseOptions(
-  baseUrl: 'https://api.openai.com/v1/',
+  baseUrl: 'http://0.0.0.0:21772',
   headers: {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer $apiKey',
   },
-));
+))
+  ..interceptors.add(LogInterceptor(
+    requestBody: true,
+    responseBody: true,
+  ));
 
 final chatService = ChatService();
 
 class ChatService {
-  Future<ChatCompletionDto> chat(List<MsgDto> msgs) async {
-    final data = {
-      "model": "gpt-3.5-turbo",
-      "messages": msgs.map((e) => e.toJson()).toList(),
-    };
-    final response = await Dio(BaseOptions(headers: {
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer $apiKey',
-    })).post('https://api.openai.com/v1/chat/completions',
-    data: data);
-    // final response = await dio.post(
-    //   'chat/completions',
-    //   data: json.encode(data),
-    // );
-    return ChatCompletionDto.fromJson(response.data);
+  Future<MsgGpt35> chat(MsgGpt35 msgs) async {
+    final data = msgs;
+    final response = await dio.post('/bot/chat/gpt35', data: data);
+    return MsgGpt35.fromJson(response.data);
   }
 }
 
