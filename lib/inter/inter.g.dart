@@ -24,30 +24,30 @@ Map<String, dynamic> _$$_MsgDtoToJson(_$_MsgDto instance) => <String, dynamic>{
       'model_id': instance.model_id,
     };
 
-_$_Gpt35ContentDto _$$_Gpt35ContentDtoFromJson(Map<String, dynamic> json) =>
-    _$_Gpt35ContentDto(
+_$_Gpt35ChoicesDto _$$_Gpt35ChoicesDtoFromJson(Map<String, dynamic> json) =>
+    _$_Gpt35ChoicesDto(
       index: json['index'] as int,
       message:
-          Gpt35ContentMsgDto.fromJson(json['message'] as Map<String, dynamic>),
-      finishReason: json['finishReason'] as String,
+          MsgGpt35ContentDto.fromJson(json['message'] as Map<String, dynamic>),
+      finish_reason: json['finish_reason'] as String,
     );
 
-Map<String, dynamic> _$$_Gpt35ContentDtoToJson(_$_Gpt35ContentDto instance) =>
+Map<String, dynamic> _$$_Gpt35ChoicesDtoToJson(_$_Gpt35ChoicesDto instance) =>
     <String, dynamic>{
       'index': instance.index,
       'message': instance.message,
-      'finishReason': instance.finishReason,
+      'finish_reason': instance.finish_reason,
     };
 
-_$_Gpt35ContentMsgDto _$$_Gpt35ContentMsgDtoFromJson(
+_$_MsgGpt35ContentDto _$$_MsgGpt35ContentDtoFromJson(
         Map<String, dynamic> json) =>
-    _$_Gpt35ContentMsgDto(
+    _$_MsgGpt35ContentDto(
       role: json['role'] as String,
       content: json['content'] as String,
     );
 
-Map<String, dynamic> _$$_Gpt35ContentMsgDtoToJson(
-        _$_Gpt35ContentMsgDto instance) =>
+Map<String, dynamic> _$$_MsgGpt35ContentDtoToJson(
+        _$_MsgGpt35ContentDto instance) =>
     <String, dynamic>{
       'role': instance.role,
       'content': instance.content,

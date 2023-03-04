@@ -26,22 +26,22 @@ class MsgDto with _$MsgDto {
 ///   "finish_reason": "stop"
 /// }
 @freezed
-class Gpt35ContentDto with _$Gpt35ContentDto {
-  const factory Gpt35ContentDto({
+class Gpt35ChoicesDto with _$Gpt35ChoicesDto {
+  const factory Gpt35ChoicesDto({
     required int index,
-    required Gpt35ContentMsgDto message,
-    required String finishReason,
-  }) = _Gpt35ContentDto;
-  factory Gpt35ContentDto.fromJson(Map<String, dynamic> json) =>
-      _$Gpt35ContentDtoFromJson(json);
+    required MsgGpt35ContentDto message,
+    required String finish_reason,
+  }) = _Gpt35ChoicesDto;
+  factory Gpt35ChoicesDto.fromJson(Map<String, dynamic> json) =>
+      _$Gpt35ChoicesDtoFromJson(json);
 }
 
 @freezed
-class Gpt35ContentMsgDto with _$Gpt35ContentMsgDto {
-  const factory Gpt35ContentMsgDto({
+class MsgGpt35ContentDto with _$MsgGpt35ContentDto {
+  const factory MsgGpt35ContentDto({
     required String role,
     required String content,
-  }) = _Gpt35ContentMsgDto;
-  factory Gpt35ContentMsgDto.fromJson(Map<String, dynamic> json) =>
-      _$Gpt35ContentMsgDtoFromJson(json);
+  }) = _MsgGpt35ContentDto;
+  factory MsgGpt35ContentDto.fromJson(Map<String, dynamic> json) =>
+      _$MsgGpt35ContentDtoFromJson(json);
 }
