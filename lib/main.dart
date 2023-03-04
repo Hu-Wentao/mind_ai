@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mind_ai/application/service.dart';
 
 import 'domain/domain.dart';
+import 'inter/inter.dart';
 
 void main() {
   runApp(const MyApp());
@@ -57,7 +58,10 @@ class _MyHomePageState extends State<MyHomePage> {
             const ChatModelSwitcher(),
           ],
         ),
-        body: ChatScreen(),
+        body: const Padding(
+          padding: EdgeInsets.all(8.0),
+          child: ChatScreen(),
+        ),
       ),
     );
   }
@@ -99,7 +103,6 @@ class _ChatModelSwitcherState extends State<ChatModelSwitcher> {
           ),
         ],
         onChanged: (tp) {
-          print("debug tp $tp");
           setState(() {
             chosenTp = tp!;
           });
@@ -119,8 +122,8 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
-  late final TextEditingController? controller;
-  MsgGpt35 msg = const MsgGpt35(
+  late final TextEditingController controller;
+  MsgGpt35Rsp msg = const MsgGpt35Rsp(
     from_id: 'from_id',
     to_id: 'to_id',
     content: [],
@@ -146,8 +149,8 @@ class _ChatScreenState extends State<ChatScreen> {
                 children: [
                   for (final m in msg.content)
                     ListTile(
-                      title: Text(m.role),
-                      subtitle: Text(m.content),
+                      title: Text(m.message.role),
+                      subtitle: SelectableText(m.message.content),
                     ),
                 ],
               ),
@@ -166,15 +169,31 @@ class _ChatScreenState extends State<ChatScreen> {
               ),
               IconButton(
                 icon: const Icon(Icons.send),
-                onPressed: () async {
-                  msg = msg.mergeContent(await chatService.chat(msg));
-                  setState(() {});
-                },
+                onPressed: sendMsg,
               ),
             ],
           ),
         ],
       ),
     );
+  }
+
+  Future<void> sendMsg() async {
+    if (controller.text.isEmpty) return;
+    final content = Gpt35ChoicesDto(
+      index: msg.content.length,
+      message: MsgGpt35ContentDto(
+        role: 'user',
+        content: controller.text,
+      ),
+      finish_reason: '',
+    );
+    controller.clear();
+    msg = msg.addContent(content);
+    setState(() {});
+
+    final nMsg = await chatService.chat(msg.toReq());
+    msg = msg.mergeContent(nMsg);
+    setState(() {});
   }
 }
