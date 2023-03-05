@@ -13,11 +13,12 @@ enum ModelTp {
 }
 
 class MsgGpt35Rsp extends Msg<Gpt35ChoicesDto> {
-  const MsgGpt35Rsp(
-      {required super.from_id,
-      required super.to_id,
-      required super.content,
-      required super.model_id});
+  const MsgGpt35Rsp({
+    required super.from_id,
+    required super.to_id,
+    required super.content,
+    required super.model_id,
+  });
 
   factory MsgGpt35Rsp.fromJson(Map<String, dynamic> json) {
     final dto = MsgDto.fromJson(json);
@@ -46,11 +47,11 @@ class MsgGpt35Rsp extends Msg<Gpt35ChoicesDto> {
         model_id: model_id,
       );
 
-  MsgGpt35Req toReq() {
+  MsgGpt35Req toReq({List<Gpt35ChoicesDto>? ct}) {
     return MsgGpt35Req(
       from_id: from_id,
       to_id: to_id,
-      content: content
+      content: (ct ?? content)
           .map((e) => MsgGpt35ContentDto(
                 role: e.message.role,
                 content: e.message.content,
@@ -58,6 +59,18 @@ class MsgGpt35Rsp extends Msg<Gpt35ChoicesDto> {
           .toList(),
       model_id: model_id,
     );
+  }
+
+  /// [stop] 默认3，保留最后3轮对话；为4时，与达芬奇3一致
+  MsgGpt35Req toReqByStop({int stop = 3}) {
+    // 倒序while遍历content, 遇到stop，stop--，直到stop==0，记录下标
+    var idx = content.length;
+    while (idx-- > 0) {
+      if (content[idx].finish_reason == 'stop') {
+        if (stop-- == 0) break;
+      }
+    }
+    return toReq(ct: content.sublist(idx));
   }
 }
 
