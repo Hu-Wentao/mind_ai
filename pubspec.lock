@@ -161,6 +161,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.2"
+  csslib:
+    dependency: transitive
+    description:
+      name: csslib
+      sha256: b36c7f7e24c0bdf1bf9a3da461c837d1de64b9f8beb190c9011d8c72a3dfd745
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.17.2"
   cupertino_icons:
     dependency: "direct main"
     description:
@@ -235,6 +243,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_web_optimizer:
+    dependency: "direct dev"
+    description:
+      name: flutter_web_optimizer
+      sha256: "137c5cd9fcdad48924cfb1b99c01a257a7c372ad0b406bae22ddc3470818b26a"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.10"
   flutter_web_plugins:
     dependency: transitive
     description: flutter
@@ -280,6 +296,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.2.0"
+  html:
+    dependency: transitive
+    description:
+      name: html
+      sha256: "79d498e6d6761925a34ee5ea8fa6dfef38607781d2fa91e37523474282af55cb"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.15.2"
   http_multi_server:
     dependency: transitive
     description:
