@@ -1,13 +1,14 @@
 import 'package:dio/dio.dart';
-import 'package:mind_ai/domain/domain.dart';
 
-import '../domain/config/const.dart';
+import '../config/const.dart';
+import '../domain/domain.dart';
+
 
 final dio = Dio(BaseOptions(
   baseUrl: baseUrl,
   headers: {
     'Content-Type': 'application/json',
-    'Authorization': 'Bearer $apiKey',
+    'Authorization': 'Bearer $jwt',
   },
 ))
   ..interceptors.add(LogInterceptor(

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:mind_ai/application/service.dart';
+import 'package:mind_ai/src/application/service.dart';
 
-import 'domain/domain.dart';
-import 'inter/inter.dart';
+import 'src/domain/domain.dart';
+import 'src/inter/inter.dart';
 
 void main() {
   runApp(const MyApp());

@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mind_ai/domain/domain.dart';
-import 'package:mind_ai/inter/inter.dart';
+import 'package:mind_ai/src/domain/domain.dart';
+import 'package:mind_ai/src/inter/inter.dart';
 
 main() {
   test("content", () {
