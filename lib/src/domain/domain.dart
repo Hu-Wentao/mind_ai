@@ -63,9 +63,10 @@ class MsgGpt35Rsp extends Msg<Gpt35ChoicesDto> {
 
   /// [stop] 默认3，保留最后3轮对话；为4时，与达芬奇3一致
   MsgGpt35Req toReqByStop({int stop = 3}) {
+    assert(stop >= 0, 'stop must >= 0');
     // 倒序while遍历content, 遇到stop，stop--，直到stop==0，记录下标
     var idx = content.length;
-    while (idx-- > 0) {
+    while (idx-- > 1) {
       if (content[idx].finish_reason == 'stop') {
         if (stop-- == 0) break;
       }
