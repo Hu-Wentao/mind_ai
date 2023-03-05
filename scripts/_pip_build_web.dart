@@ -1,10 +1,10 @@
 import 'dart:io';
 import 'utils.dart';
+import 'utils_runner.dart';
 
 main() async {
-// dart pub global activate peanut
-  // await Process.start('dart', ['pub', 'global', 'activate', 'peanut'])
-  //     .printProcess();
+  await cmdRunBuildRunner().printProcess();
+
   await flutterWebOptimizer().printProcess();
 
   await buildWeb().printProcess();
