@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:mind_ai/src/application/provider.dart';
 import 'package:provider_sidecar/provider_sidecar_ex.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'src/domain/domain.dart';
 
@@ -61,12 +64,17 @@ class _MyHomePageState extends State<MyHomePage> {
                       .copyWith(color: Colors.white),
                 )),
             const ChatModelSwitcher(),
+            Tooltip(
+              message: '问题反馈/功能建议',
+              child: IconButton(
+                onPressed: () => launchUrl(
+                    Uri.parse('https://support.qq.com/product/514606')),
+                icon: const Icon(Icons.feedback_rounded),
+              ),
+            )
           ],
         ),
-        body: const Padding(
-          padding: EdgeInsets.all(8.0),
-          child: ChatScreen(),
-        ),
+        body: const ChatScreen(),
       ),
     );
   }
@@ -124,13 +132,21 @@ class ChatScreen extends StatefulWidget {
   State<ChatScreen> createState() => _ChatScreenState();
 }
 
-class _ChatScreenState extends State<ChatScreen> {
+class _ChatScreenState extends State<ChatScreen>
+    with OnInitStateMx<ChatScreen, ChatProvider> {
   late final TextEditingController controller;
+  late final ScrollController scrollController;
 
   @override
   void initState() {
     super.initState();
     controller = TextEditingController();
+    scrollController = ScrollController();
+  }
+
+  @override
+  StreamSubscription? onInitState(ScaffoldMessengerState msgr, ChatProvider a) {
+    return null;
   }
 
   @override
@@ -139,11 +155,15 @@ class _ChatScreenState extends State<ChatScreen> {
       padding: const EdgeInsets.all(8.0),
       child: Consumer<ChatProvider>(
         builder: (c, p, _) => Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             Expanded(
               child: SingleChildScrollView(
+                controller: scrollController,
+                reverse: true,
                 child: Column(
+                  mainAxisSize: MainAxisSize.min,
                   children: [
                     for (final m in p.state.content)
                       ListTile(
@@ -162,6 +182,7 @@ class _ChatScreenState extends State<ChatScreen> {
                     controller: controller,
                     decoration: const InputDecoration(
                       hintText: '请输入内容',
+                      border: OutlineInputBorder(),
                     ),
                   ),
                 ),
