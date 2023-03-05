@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:mind_ai/src/application/service.dart';
+import 'package:mind_ai/src/application/provider.dart';
+import 'package:provider_sidecar/provider_sidecar_ex.dart';
 
 import 'src/domain/domain.dart';
-import 'src/inter/inter.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,12 +13,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Mind AI',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<ChatProvider>(create: (_) => ChatProvider()),
+      ],
+      child: MaterialApp(
+        title: 'Mind AI',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: const MyHomePage(),
       ),
-      home: const MyHomePage(),
     );
   }
 }
@@ -113,9 +118,7 @@ class _ChatModelSwitcherState extends State<ChatModelSwitcher> {
 }
 
 class ChatScreen extends StatefulWidget {
-  const ChatScreen({
-    super.key,
-  });
+  const ChatScreen({super.key});
 
   @override
   State<ChatScreen> createState() => _ChatScreenState();
@@ -123,12 +126,6 @@ class ChatScreen extends StatefulWidget {
 
 class _ChatScreenState extends State<ChatScreen> {
   late final TextEditingController controller;
-  MsgGpt35Rsp msg = const MsgGpt35Rsp(
-    from_id: 'from_id',
-    to_id: 'to_id',
-    content: [],
-    model_id: 'model_id',
-  );
 
   @override
   void initState() {
@@ -140,60 +137,46 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Expanded(
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  for (final m in msg.content)
-                    ListTile(
-                      title: Text(m.message.role),
-                      subtitle: SelectableText(m.message.content),
-                    ),
-                ],
-              ),
-            ),
-          ),
-          // 添加一个文字输入框，以及发送按钮
-          Row(
-            children: [
-              Expanded(
-                child: TextField(
-                  controller: controller,
-                  decoration: const InputDecoration(
-                    hintText: '请输入内容',
-                  ),
+      child: Consumer<ChatProvider>(
+        builder: (c, p, _) => Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    for (final m in p.state.content)
+                      ListTile(
+                        title: Text(m.message.role),
+                        subtitle: SelectableText(m.message.content),
+                      ),
+                  ],
                 ),
               ),
-              IconButton(
-                icon: const Icon(Icons.send),
-                onPressed: sendMsg,
-              ),
-            ],
-          ),
-        ],
+            ),
+            // 添加一个文字输入框，以及发送按钮
+            Row(
+              children: [
+                Expanded(
+                  child: TextField(
+                    controller: controller,
+                    decoration: const InputDecoration(
+                      hintText: '请输入内容',
+                    ),
+                  ),
+                ),
+                IconButton(
+                  icon: const Icon(Icons.send),
+                  onPressed: () {
+                    p.add(ChatEvt.ask(controller.text));
+                    controller.clear();
+                  },
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
-  }
-
-  Future<void> sendMsg() async {
-    if (controller.text.isEmpty) return;
-    final content = Gpt35ChoicesDto(
-      index: msg.content.length,
-      message: MsgGpt35ContentDto(
-        role: 'user',
-        content: controller.text,
-      ),
-      finish_reason: '',
-    );
-    controller.clear();
-    msg = msg.addContent(content);
-    setState(() {});
-
-    final nMsg = await chatService.chat(msg.toReq());
-    msg = msg.mergeContent(nMsg);
-    setState(() {});
   }
 }
