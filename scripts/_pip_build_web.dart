@@ -1,15 +1,16 @@
 import 'dart:io';
 import 'utils.dart';
+import 'utils_file.dart';
 import 'utils_runner.dart';
 
 main() async {
   await cmdRunBuildRunner().printProcess();
 
-  await flutterWebOptimizer().printProcess();
-
+  // await flutterWebOptimizer().printProcess();
   await buildWeb().printProcess();
 
-  await peanutBuildWeb().printProcess();
+  final ver = cmdGetSpecVersion(shScriptFileFolder.parentPath);
+  await peanutBuildWeb(msg: 'Build Web $ver').printProcess();
 }
 
 Future<Process> buildWeb() async {
@@ -49,14 +50,18 @@ Future<Process> flutterWebOptimizer() async {
 }
 
 // // dart pub global run peanut -b prod_web
-Future<Process> peanutBuildWeb() async {
+Future<Process> peanutBuildWeb({
+  String branch = 'prod_web',
+  String? msg,
+}) async {
   final args = [
     'pub',
     'global',
     'run',
     'peanut',
     '-b',
-    'prod_web',
+    branch,
+    if (msg != null) ...['-m', msg]
   ];
   print("p.b.w# dart ${args.join(' ')}");
   return await Process.start(
