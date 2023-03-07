@@ -80,3 +80,19 @@ Future<Process> cmdGitCommit({
     if (addAll) '-a', // 提交所有新文件
   ]);
 }
+
+/// 辅助构造提交信息
+String buildCommit({
+  required String specVersion,
+  String? feat,
+  String? fix,
+  String? refactor,
+  String? doc,
+}) =>
+    [
+      'v$specVersion',
+      if (feat != null) '新增：$feat',
+      if (fix != null) '修复：$fix',
+      if (refactor != null) '重构：$refactor',
+      if (doc != null) '文档：$doc',
+    ].join(';\n');
