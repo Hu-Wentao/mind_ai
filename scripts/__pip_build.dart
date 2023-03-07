@@ -11,7 +11,7 @@ main() async {
   const setVersion = '1.0.4';
   final commitMsg = buildCommit(
     specVersion: setVersion,
-    feat: "",
+    feat: "添加版本检查更新，安卓自动更新功能",
     // fix: "",
     // refactor: "",
     // doc:
