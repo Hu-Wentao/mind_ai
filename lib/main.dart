@@ -18,6 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider<AppProvider>(create: (_) => AppProvider()),
         ChangeNotifierProvider<ChatProvider>(create: (_) => ChatProvider()),
       ],
       child: MaterialApp(
@@ -25,22 +26,35 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: const MyHomePage(),
+        home: const HomePage(),
       ),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({
+class HomePage extends StatefulWidget {
+  const HomePage({
     super.key,
   });
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _HomePageState extends State<HomePage>
+    with OnInitStateMx<HomePage, AppProvider> {
+  @override
+  StreamSubscription? onInitState(ScaffoldMessengerState msgr, AppProvider a) {
+    return a.events.listen((event) {
+      event.whenOrNull(
+        needUpdate: (_) {
+          // 安卓/ios已自动处理（包括弹dialog）；
+          // mac/win会后台更新
+        },
+      );
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(

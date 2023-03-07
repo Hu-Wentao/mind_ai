@@ -43,6 +43,7 @@ class AppProvider extends SidecarProvider<AppEvt, String> {
   }
 
   Future<Object?> ensureUpdate(AppUpdateInfo info) async {
+    // todo 当前仅 安卓/ios，mac win见 https://pub.flutter-io.cn/packages/auto_updater
     // 下载更新 todo 其他特性见 https://pub.flutter-io.cn/packages/flutter_app_update
     final model = UpdateModel(
       info.url!,

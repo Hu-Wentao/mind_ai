@@ -41,7 +41,8 @@ dependencies:
   provider_sidecar:
     path: ../../../IdeaProjects/provider_sidecar
   url_launcher:
-
+  flutter_app_update: 
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter

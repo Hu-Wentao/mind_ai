@@ -58,7 +58,7 @@ const List<String> pre = <String>[];
 const List<String> build = <String>[];
 
 /// Build date in Unix Time (in seconds)
-const int timestamp = 1678102080;
+const int timestamp = 1678211673;
 
 /// Name [name]
 const String name = r'mind_ai';
@@ -103,7 +103,7 @@ const Map<String, Object> devDependencies = <String, Object>{
   'flutter_test': <String, Object>{
     'sdk': r'flutter',
   },
-  'flutter_lints': r'^2.0.0',
+  'flutter_lints': r'^2.0.1',
 };
 
 /// Dependency overrides
