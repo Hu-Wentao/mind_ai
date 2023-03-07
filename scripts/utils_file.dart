@@ -23,11 +23,3 @@ Map<String,dynamic> sdkReadJson({
   final result = f.readAsStringSync();
   return jsonDecode(result) as Map<String,dynamic>;
 }
-
-/// pubspec.yaml 工具
-
-String cmdGetSpecVersion(String projectRootPath) =>
-    File('$projectRootPath/pubspec.yaml')
-        .readAsLinesSync()
-        .firstWhere((line) => line.startsWith("version:"))
-        .replaceAll(RegExp(r"version: "), '');

@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'utils.dart';
-import 'utils_file.dart';
 import 'utils_runner.dart';
+import 'utils_spec_file.dart';
 
 main() async {
   await cmdRunBuildRunner().printProcess();
