@@ -8,9 +8,13 @@ import 'package:provider_sidecar/provider_sidecar.dart';
 import 'package:flutter_app_update/azhon_app_update.dart';
 
 import '../inter/inter.dart';
+import 'package:platform_device_id/platform_device_id.dart';
+import 'package:cuid2/cuid2.dart';
 
 part 'provider.freezed.dart';
-// part 'provider.g.dart';
 
-part './provider/app_provider.dart';
-part './provider/chat_provider.dart';
+part './provider/app_model.dart';
+
+part './provider/chat_model.dart';
+
+part './provider/acct_model.dart';

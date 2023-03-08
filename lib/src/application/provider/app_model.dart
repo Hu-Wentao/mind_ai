@@ -2,30 +2,77 @@ part of '../provider.dart';
 
 @freezed
 class AppEvt with _$AppEvt {
-  // app启动事件
+  /// 版本检查
   // const factory AppEvt.start() = _AppEvtInit;
   const factory AppEvt.checkUpdate() = _AppEvtCheckUpdate;
+
   // 需要版本更新
   const factory AppEvt.needUpdate(AppUpdateInfo info) = _AppEvtNeedUpdate;
+
   // 确认下载安装更新
   const factory AppEvt.ensureUpdate(AppUpdateInfo info) = _AppEvtEnsureUpdate;
+
+  /// 用户登陆
+  // 尝试自动匿名登陆
+  const factory AppEvt.login() = _AppEvtLogin;
+
+  const factory AppEvt.logged(String uid) = _AppEvtLogged;
+
+  const factory AppEvt.loginError(String msg) = _AppEvtLoginError;
+
+  const factory AppEvt.logout() = _AppEvtLogout;
 }
 
-class AppProvider extends SidecarProvider<AppEvt, String> {
-  AppProvider({
-    super.state = '',
-  }) {
+/// [AppModel] 是全局唯一的，其ID没有意义，仅代表某个AppModel
+class AppModel extends SidecarModel<AppEvt, String> {
+  AcctModel? chosenAcct;
+
+  AppModel({super.id = ''}) {
     // 创建Provider时检查更新
     add(const AppEvt.checkUpdate());
   }
+
   @override
   FutureOr<void> onEvent(AppEvt evt) => evt.when(
-        // start: start,
         checkUpdate: checkUpdate,
         needUpdate: needUpdate,
         ensureUpdate: ensureUpdate,
+        //
+        login: login,
+        logout: logout,
+        loginError: loginError,
+        logged: logged,
       );
+}
 
+extension AppAcctX on AppModel {
+  login() async {
+    // todo 先尝试通过本地token登陆
+    // 匿名登陆
+    final deviceId = await PlatformDeviceId.getDeviceId;
+    if (deviceId == null) {
+      add(const AppEvt.loginError('获取设备ID失败'));
+      return;
+    }
+    add(AppEvt.logged(deviceId));
+  }
+
+  logged(String uid) {
+    chosenAcct = AcctModel(id: uid);
+    setState('用户登陆成功[$uid]');
+  }
+
+  logout() {
+    //
+    setState('用户登出');
+  }
+
+  loginError(String error) {
+    //
+  }
+}
+
+extension AppVersionX on AppModel {
   // 检查更新
   checkUpdate() async {
     final info = await appService.checkVersion();

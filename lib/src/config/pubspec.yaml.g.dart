@@ -58,7 +58,7 @@ const List<String> pre = <String>[];
 const List<String> build = <String>[];
 
 /// Build date in Unix Time (in seconds)
-const int timestamp = 1678213343;
+const int timestamp = 1678293885;
 
 /// Name [name]
 const String name = r'mind_ai';
@@ -91,7 +91,7 @@ const Map<String, Object> dependencies = <String, Object>{
   'flutter': <String, Object>{
     'sdk': r'flutter',
   },
-  'cupertino_icons': r'^1.0.2',
+  'cupertino_icons': r'^1.0.5',
   'json_annotation': r'>=4.8.0',
   'provider_sidecar': <String, Object>{
     'path': r'../../../IdeaProjects/provider_sidecar',

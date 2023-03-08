@@ -18,14 +18,20 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider<AppProvider>(create: (_) => AppProvider()),
-        ChangeNotifierProvider<ChatProvider>(create: (_) => ChatProvider()),
+        ChangeNotifierProvider<AppModel>(create: (_) => AppModel()),
+        ChangeNotifierProxyProvider<AppModel, AcctModel?>(
+          create: (_) => null,
+          update: (c, m, b) => m.chosenAcct,
+        ),
+        // 通过路由确定特定ChatModel
+        // ChangeNotifierProxyProvider<AcctModel?, ChatModel?>(
+        //   create: (_) => null,
+        //   update: (c, m, b) => m?.chosenChat,
+        // ),
       ],
       child: MaterialApp(
         title: 'Mind AI',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
+        theme: ThemeData(primarySwatch: Colors.blue),
         home: const HomePage(),
       ),
     );
@@ -42,9 +48,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage>
-    with OnInitStateMx<HomePage, AppProvider> {
+    with OnInitStateMx<HomePage, AppModel> {
   @override
-  StreamSubscription? onInitState(ScaffoldMessengerState msgr, AppProvider a) {
+  StreamSubscription? onInitState(ScaffoldMessengerState msgr, AppModel a) {
     return a.events.listen((event) {
       event.whenOrNull(
         needUpdate: (_) {
@@ -105,6 +111,7 @@ class ChatModelSwitcher extends StatefulWidget {
 
 class _ChatModelSwitcherState extends State<ChatModelSwitcher> {
   late ModelTp chosenTp;
+
   @override
   void initState() {
     chosenTp = ModelTp.gpt35turbo;
@@ -147,7 +154,7 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen>
-    with OnInitStateMx<ChatScreen, ChatProvider> {
+    with OnInitStateMx<ChatScreen, ChatModel> {
   late final TextEditingController controller;
   late final ScrollController scrollController;
 
@@ -159,7 +166,7 @@ class _ChatScreenState extends State<ChatScreen>
   }
 
   @override
-  StreamSubscription? onInitState(ScaffoldMessengerState msgr, ChatProvider a) {
+  StreamSubscription? onInitState(ScaffoldMessengerState msgr, ChatModel a) {
     return null;
   }
 
@@ -167,7 +174,7 @@ class _ChatScreenState extends State<ChatScreen>
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Consumer<ChatProvider>(
+      child: Consumer<ChatModel>(
         builder: (c, p, _) => Column(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.start,

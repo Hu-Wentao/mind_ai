@@ -21,6 +21,10 @@ mixin _$AppEvt {
     required TResult Function() checkUpdate,
     required TResult Function(AppUpdateInfo info) needUpdate,
     required TResult Function(AppUpdateInfo info) ensureUpdate,
+    required TResult Function() login,
+    required TResult Function(String uid) logged,
+    required TResult Function(String msg) loginError,
+    required TResult Function() logout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -28,6 +32,10 @@ mixin _$AppEvt {
     TResult? Function()? checkUpdate,
     TResult? Function(AppUpdateInfo info)? needUpdate,
     TResult? Function(AppUpdateInfo info)? ensureUpdate,
+    TResult? Function()? login,
+    TResult? Function(String uid)? logged,
+    TResult? Function(String msg)? loginError,
+    TResult? Function()? logout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -35,6 +43,10 @@ mixin _$AppEvt {
     TResult Function()? checkUpdate,
     TResult Function(AppUpdateInfo info)? needUpdate,
     TResult Function(AppUpdateInfo info)? ensureUpdate,
+    TResult Function()? login,
+    TResult Function(String uid)? logged,
+    TResult Function(String msg)? loginError,
+    TResult Function()? logout,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -43,6 +55,10 @@ mixin _$AppEvt {
     required TResult Function(_AppEvtCheckUpdate value) checkUpdate,
     required TResult Function(_AppEvtNeedUpdate value) needUpdate,
     required TResult Function(_AppEvtEnsureUpdate value) ensureUpdate,
+    required TResult Function(_AppEvtLogin value) login,
+    required TResult Function(_AppEvtLogged value) logged,
+    required TResult Function(_AppEvtLoginError value) loginError,
+    required TResult Function(_AppEvtLogout value) logout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -50,6 +66,10 @@ mixin _$AppEvt {
     TResult? Function(_AppEvtCheckUpdate value)? checkUpdate,
     TResult? Function(_AppEvtNeedUpdate value)? needUpdate,
     TResult? Function(_AppEvtEnsureUpdate value)? ensureUpdate,
+    TResult? Function(_AppEvtLogin value)? login,
+    TResult? Function(_AppEvtLogged value)? logged,
+    TResult? Function(_AppEvtLoginError value)? loginError,
+    TResult? Function(_AppEvtLogout value)? logout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -57,6 +77,10 @@ mixin _$AppEvt {
     TResult Function(_AppEvtCheckUpdate value)? checkUpdate,
     TResult Function(_AppEvtNeedUpdate value)? needUpdate,
     TResult Function(_AppEvtEnsureUpdate value)? ensureUpdate,
+    TResult Function(_AppEvtLogin value)? login,
+    TResult Function(_AppEvtLogged value)? logged,
+    TResult Function(_AppEvtLoginError value)? loginError,
+    TResult Function(_AppEvtLogout value)? logout,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -120,6 +144,10 @@ class _$_AppEvtCheckUpdate implements _AppEvtCheckUpdate {
     required TResult Function() checkUpdate,
     required TResult Function(AppUpdateInfo info) needUpdate,
     required TResult Function(AppUpdateInfo info) ensureUpdate,
+    required TResult Function() login,
+    required TResult Function(String uid) logged,
+    required TResult Function(String msg) loginError,
+    required TResult Function() logout,
   }) {
     return checkUpdate();
   }
@@ -130,6 +158,10 @@ class _$_AppEvtCheckUpdate implements _AppEvtCheckUpdate {
     TResult? Function()? checkUpdate,
     TResult? Function(AppUpdateInfo info)? needUpdate,
     TResult? Function(AppUpdateInfo info)? ensureUpdate,
+    TResult? Function()? login,
+    TResult? Function(String uid)? logged,
+    TResult? Function(String msg)? loginError,
+    TResult? Function()? logout,
   }) {
     return checkUpdate?.call();
   }
@@ -140,6 +172,10 @@ class _$_AppEvtCheckUpdate implements _AppEvtCheckUpdate {
     TResult Function()? checkUpdate,
     TResult Function(AppUpdateInfo info)? needUpdate,
     TResult Function(AppUpdateInfo info)? ensureUpdate,
+    TResult Function()? login,
+    TResult Function(String uid)? logged,
+    TResult Function(String msg)? loginError,
+    TResult Function()? logout,
     required TResult orElse(),
   }) {
     if (checkUpdate != null) {
@@ -154,6 +190,10 @@ class _$_AppEvtCheckUpdate implements _AppEvtCheckUpdate {
     required TResult Function(_AppEvtCheckUpdate value) checkUpdate,
     required TResult Function(_AppEvtNeedUpdate value) needUpdate,
     required TResult Function(_AppEvtEnsureUpdate value) ensureUpdate,
+    required TResult Function(_AppEvtLogin value) login,
+    required TResult Function(_AppEvtLogged value) logged,
+    required TResult Function(_AppEvtLoginError value) loginError,
+    required TResult Function(_AppEvtLogout value) logout,
   }) {
     return checkUpdate(this);
   }
@@ -164,6 +204,10 @@ class _$_AppEvtCheckUpdate implements _AppEvtCheckUpdate {
     TResult? Function(_AppEvtCheckUpdate value)? checkUpdate,
     TResult? Function(_AppEvtNeedUpdate value)? needUpdate,
     TResult? Function(_AppEvtEnsureUpdate value)? ensureUpdate,
+    TResult? Function(_AppEvtLogin value)? login,
+    TResult? Function(_AppEvtLogged value)? logged,
+    TResult? Function(_AppEvtLoginError value)? loginError,
+    TResult? Function(_AppEvtLogout value)? logout,
   }) {
     return checkUpdate?.call(this);
   }
@@ -174,6 +218,10 @@ class _$_AppEvtCheckUpdate implements _AppEvtCheckUpdate {
     TResult Function(_AppEvtCheckUpdate value)? checkUpdate,
     TResult Function(_AppEvtNeedUpdate value)? needUpdate,
     TResult Function(_AppEvtEnsureUpdate value)? ensureUpdate,
+    TResult Function(_AppEvtLogin value)? login,
+    TResult Function(_AppEvtLogged value)? logged,
+    TResult Function(_AppEvtLoginError value)? loginError,
+    TResult Function(_AppEvtLogout value)? logout,
     required TResult orElse(),
   }) {
     if (checkUpdate != null) {
@@ -264,6 +312,10 @@ class _$_AppEvtNeedUpdate implements _AppEvtNeedUpdate {
     required TResult Function() checkUpdate,
     required TResult Function(AppUpdateInfo info) needUpdate,
     required TResult Function(AppUpdateInfo info) ensureUpdate,
+    required TResult Function() login,
+    required TResult Function(String uid) logged,
+    required TResult Function(String msg) loginError,
+    required TResult Function() logout,
   }) {
     return needUpdate(info);
   }
@@ -274,6 +326,10 @@ class _$_AppEvtNeedUpdate implements _AppEvtNeedUpdate {
     TResult? Function()? checkUpdate,
     TResult? Function(AppUpdateInfo info)? needUpdate,
     TResult? Function(AppUpdateInfo info)? ensureUpdate,
+    TResult? Function()? login,
+    TResult? Function(String uid)? logged,
+    TResult? Function(String msg)? loginError,
+    TResult? Function()? logout,
   }) {
     return needUpdate?.call(info);
   }
@@ -284,6 +340,10 @@ class _$_AppEvtNeedUpdate implements _AppEvtNeedUpdate {
     TResult Function()? checkUpdate,
     TResult Function(AppUpdateInfo info)? needUpdate,
     TResult Function(AppUpdateInfo info)? ensureUpdate,
+    TResult Function()? login,
+    TResult Function(String uid)? logged,
+    TResult Function(String msg)? loginError,
+    TResult Function()? logout,
     required TResult orElse(),
   }) {
     if (needUpdate != null) {
@@ -298,6 +358,10 @@ class _$_AppEvtNeedUpdate implements _AppEvtNeedUpdate {
     required TResult Function(_AppEvtCheckUpdate value) checkUpdate,
     required TResult Function(_AppEvtNeedUpdate value) needUpdate,
     required TResult Function(_AppEvtEnsureUpdate value) ensureUpdate,
+    required TResult Function(_AppEvtLogin value) login,
+    required TResult Function(_AppEvtLogged value) logged,
+    required TResult Function(_AppEvtLoginError value) loginError,
+    required TResult Function(_AppEvtLogout value) logout,
   }) {
     return needUpdate(this);
   }
@@ -308,6 +372,10 @@ class _$_AppEvtNeedUpdate implements _AppEvtNeedUpdate {
     TResult? Function(_AppEvtCheckUpdate value)? checkUpdate,
     TResult? Function(_AppEvtNeedUpdate value)? needUpdate,
     TResult? Function(_AppEvtEnsureUpdate value)? ensureUpdate,
+    TResult? Function(_AppEvtLogin value)? login,
+    TResult? Function(_AppEvtLogged value)? logged,
+    TResult? Function(_AppEvtLoginError value)? loginError,
+    TResult? Function(_AppEvtLogout value)? logout,
   }) {
     return needUpdate?.call(this);
   }
@@ -318,6 +386,10 @@ class _$_AppEvtNeedUpdate implements _AppEvtNeedUpdate {
     TResult Function(_AppEvtCheckUpdate value)? checkUpdate,
     TResult Function(_AppEvtNeedUpdate value)? needUpdate,
     TResult Function(_AppEvtEnsureUpdate value)? ensureUpdate,
+    TResult Function(_AppEvtLogin value)? login,
+    TResult Function(_AppEvtLogged value)? logged,
+    TResult Function(_AppEvtLoginError value)? loginError,
+    TResult Function(_AppEvtLogout value)? logout,
     required TResult orElse(),
   }) {
     if (needUpdate != null) {
@@ -415,6 +487,10 @@ class _$_AppEvtEnsureUpdate implements _AppEvtEnsureUpdate {
     required TResult Function() checkUpdate,
     required TResult Function(AppUpdateInfo info) needUpdate,
     required TResult Function(AppUpdateInfo info) ensureUpdate,
+    required TResult Function() login,
+    required TResult Function(String uid) logged,
+    required TResult Function(String msg) loginError,
+    required TResult Function() logout,
   }) {
     return ensureUpdate(info);
   }
@@ -425,6 +501,10 @@ class _$_AppEvtEnsureUpdate implements _AppEvtEnsureUpdate {
     TResult? Function()? checkUpdate,
     TResult? Function(AppUpdateInfo info)? needUpdate,
     TResult? Function(AppUpdateInfo info)? ensureUpdate,
+    TResult? Function()? login,
+    TResult? Function(String uid)? logged,
+    TResult? Function(String msg)? loginError,
+    TResult? Function()? logout,
   }) {
     return ensureUpdate?.call(info);
   }
@@ -435,6 +515,10 @@ class _$_AppEvtEnsureUpdate implements _AppEvtEnsureUpdate {
     TResult Function()? checkUpdate,
     TResult Function(AppUpdateInfo info)? needUpdate,
     TResult Function(AppUpdateInfo info)? ensureUpdate,
+    TResult Function()? login,
+    TResult Function(String uid)? logged,
+    TResult Function(String msg)? loginError,
+    TResult Function()? logout,
     required TResult orElse(),
   }) {
     if (ensureUpdate != null) {
@@ -449,6 +533,10 @@ class _$_AppEvtEnsureUpdate implements _AppEvtEnsureUpdate {
     required TResult Function(_AppEvtCheckUpdate value) checkUpdate,
     required TResult Function(_AppEvtNeedUpdate value) needUpdate,
     required TResult Function(_AppEvtEnsureUpdate value) ensureUpdate,
+    required TResult Function(_AppEvtLogin value) login,
+    required TResult Function(_AppEvtLogged value) logged,
+    required TResult Function(_AppEvtLoginError value) loginError,
+    required TResult Function(_AppEvtLogout value) logout,
   }) {
     return ensureUpdate(this);
   }
@@ -459,6 +547,10 @@ class _$_AppEvtEnsureUpdate implements _AppEvtEnsureUpdate {
     TResult? Function(_AppEvtCheckUpdate value)? checkUpdate,
     TResult? Function(_AppEvtNeedUpdate value)? needUpdate,
     TResult? Function(_AppEvtEnsureUpdate value)? ensureUpdate,
+    TResult? Function(_AppEvtLogin value)? login,
+    TResult? Function(_AppEvtLogged value)? logged,
+    TResult? Function(_AppEvtLoginError value)? loginError,
+    TResult? Function(_AppEvtLogout value)? logout,
   }) {
     return ensureUpdate?.call(this);
   }
@@ -469,6 +561,10 @@ class _$_AppEvtEnsureUpdate implements _AppEvtEnsureUpdate {
     TResult Function(_AppEvtCheckUpdate value)? checkUpdate,
     TResult Function(_AppEvtNeedUpdate value)? needUpdate,
     TResult Function(_AppEvtEnsureUpdate value)? ensureUpdate,
+    TResult Function(_AppEvtLogin value)? login,
+    TResult Function(_AppEvtLogged value)? logged,
+    TResult Function(_AppEvtLoginError value)? loginError,
+    TResult Function(_AppEvtLogout value)? logout,
     required TResult orElse(),
   }) {
     if (ensureUpdate != null) {
@@ -486,6 +582,596 @@ abstract class _AppEvtEnsureUpdate implements AppEvt {
   @JsonKey(ignore: true)
   _$$_AppEvtEnsureUpdateCopyWith<_$_AppEvtEnsureUpdate> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_AppEvtLoginCopyWith<$Res> {
+  factory _$$_AppEvtLoginCopyWith(
+          _$_AppEvtLogin value, $Res Function(_$_AppEvtLogin) then) =
+      __$$_AppEvtLoginCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_AppEvtLoginCopyWithImpl<$Res>
+    extends _$AppEvtCopyWithImpl<$Res, _$_AppEvtLogin>
+    implements _$$_AppEvtLoginCopyWith<$Res> {
+  __$$_AppEvtLoginCopyWithImpl(
+      _$_AppEvtLogin _value, $Res Function(_$_AppEvtLogin) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_AppEvtLogin implements _AppEvtLogin {
+  const _$_AppEvtLogin();
+
+  @override
+  String toString() {
+    return 'AppEvt.login()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_AppEvtLogin);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() checkUpdate,
+    required TResult Function(AppUpdateInfo info) needUpdate,
+    required TResult Function(AppUpdateInfo info) ensureUpdate,
+    required TResult Function() login,
+    required TResult Function(String uid) logged,
+    required TResult Function(String msg) loginError,
+    required TResult Function() logout,
+  }) {
+    return login();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? checkUpdate,
+    TResult? Function(AppUpdateInfo info)? needUpdate,
+    TResult? Function(AppUpdateInfo info)? ensureUpdate,
+    TResult? Function()? login,
+    TResult? Function(String uid)? logged,
+    TResult? Function(String msg)? loginError,
+    TResult? Function()? logout,
+  }) {
+    return login?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? checkUpdate,
+    TResult Function(AppUpdateInfo info)? needUpdate,
+    TResult Function(AppUpdateInfo info)? ensureUpdate,
+    TResult Function()? login,
+    TResult Function(String uid)? logged,
+    TResult Function(String msg)? loginError,
+    TResult Function()? logout,
+    required TResult orElse(),
+  }) {
+    if (login != null) {
+      return login();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_AppEvtCheckUpdate value) checkUpdate,
+    required TResult Function(_AppEvtNeedUpdate value) needUpdate,
+    required TResult Function(_AppEvtEnsureUpdate value) ensureUpdate,
+    required TResult Function(_AppEvtLogin value) login,
+    required TResult Function(_AppEvtLogged value) logged,
+    required TResult Function(_AppEvtLoginError value) loginError,
+    required TResult Function(_AppEvtLogout value) logout,
+  }) {
+    return login(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_AppEvtCheckUpdate value)? checkUpdate,
+    TResult? Function(_AppEvtNeedUpdate value)? needUpdate,
+    TResult? Function(_AppEvtEnsureUpdate value)? ensureUpdate,
+    TResult? Function(_AppEvtLogin value)? login,
+    TResult? Function(_AppEvtLogged value)? logged,
+    TResult? Function(_AppEvtLoginError value)? loginError,
+    TResult? Function(_AppEvtLogout value)? logout,
+  }) {
+    return login?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_AppEvtCheckUpdate value)? checkUpdate,
+    TResult Function(_AppEvtNeedUpdate value)? needUpdate,
+    TResult Function(_AppEvtEnsureUpdate value)? ensureUpdate,
+    TResult Function(_AppEvtLogin value)? login,
+    TResult Function(_AppEvtLogged value)? logged,
+    TResult Function(_AppEvtLoginError value)? loginError,
+    TResult Function(_AppEvtLogout value)? logout,
+    required TResult orElse(),
+  }) {
+    if (login != null) {
+      return login(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AppEvtLogin implements AppEvt {
+  const factory _AppEvtLogin() = _$_AppEvtLogin;
+}
+
+/// @nodoc
+abstract class _$$_AppEvtLoggedCopyWith<$Res> {
+  factory _$$_AppEvtLoggedCopyWith(
+          _$_AppEvtLogged value, $Res Function(_$_AppEvtLogged) then) =
+      __$$_AppEvtLoggedCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String uid});
+}
+
+/// @nodoc
+class __$$_AppEvtLoggedCopyWithImpl<$Res>
+    extends _$AppEvtCopyWithImpl<$Res, _$_AppEvtLogged>
+    implements _$$_AppEvtLoggedCopyWith<$Res> {
+  __$$_AppEvtLoggedCopyWithImpl(
+      _$_AppEvtLogged _value, $Res Function(_$_AppEvtLogged) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? uid = null,
+  }) {
+    return _then(_$_AppEvtLogged(
+      null == uid
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_AppEvtLogged implements _AppEvtLogged {
+  const _$_AppEvtLogged(this.uid);
+
+  @override
+  final String uid;
+
+  @override
+  String toString() {
+    return 'AppEvt.logged(uid: $uid)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_AppEvtLogged &&
+            (identical(other.uid, uid) || other.uid == uid));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, uid);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_AppEvtLoggedCopyWith<_$_AppEvtLogged> get copyWith =>
+      __$$_AppEvtLoggedCopyWithImpl<_$_AppEvtLogged>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() checkUpdate,
+    required TResult Function(AppUpdateInfo info) needUpdate,
+    required TResult Function(AppUpdateInfo info) ensureUpdate,
+    required TResult Function() login,
+    required TResult Function(String uid) logged,
+    required TResult Function(String msg) loginError,
+    required TResult Function() logout,
+  }) {
+    return logged(uid);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? checkUpdate,
+    TResult? Function(AppUpdateInfo info)? needUpdate,
+    TResult? Function(AppUpdateInfo info)? ensureUpdate,
+    TResult? Function()? login,
+    TResult? Function(String uid)? logged,
+    TResult? Function(String msg)? loginError,
+    TResult? Function()? logout,
+  }) {
+    return logged?.call(uid);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? checkUpdate,
+    TResult Function(AppUpdateInfo info)? needUpdate,
+    TResult Function(AppUpdateInfo info)? ensureUpdate,
+    TResult Function()? login,
+    TResult Function(String uid)? logged,
+    TResult Function(String msg)? loginError,
+    TResult Function()? logout,
+    required TResult orElse(),
+  }) {
+    if (logged != null) {
+      return logged(uid);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_AppEvtCheckUpdate value) checkUpdate,
+    required TResult Function(_AppEvtNeedUpdate value) needUpdate,
+    required TResult Function(_AppEvtEnsureUpdate value) ensureUpdate,
+    required TResult Function(_AppEvtLogin value) login,
+    required TResult Function(_AppEvtLogged value) logged,
+    required TResult Function(_AppEvtLoginError value) loginError,
+    required TResult Function(_AppEvtLogout value) logout,
+  }) {
+    return logged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_AppEvtCheckUpdate value)? checkUpdate,
+    TResult? Function(_AppEvtNeedUpdate value)? needUpdate,
+    TResult? Function(_AppEvtEnsureUpdate value)? ensureUpdate,
+    TResult? Function(_AppEvtLogin value)? login,
+    TResult? Function(_AppEvtLogged value)? logged,
+    TResult? Function(_AppEvtLoginError value)? loginError,
+    TResult? Function(_AppEvtLogout value)? logout,
+  }) {
+    return logged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_AppEvtCheckUpdate value)? checkUpdate,
+    TResult Function(_AppEvtNeedUpdate value)? needUpdate,
+    TResult Function(_AppEvtEnsureUpdate value)? ensureUpdate,
+    TResult Function(_AppEvtLogin value)? login,
+    TResult Function(_AppEvtLogged value)? logged,
+    TResult Function(_AppEvtLoginError value)? loginError,
+    TResult Function(_AppEvtLogout value)? logout,
+    required TResult orElse(),
+  }) {
+    if (logged != null) {
+      return logged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AppEvtLogged implements AppEvt {
+  const factory _AppEvtLogged(final String uid) = _$_AppEvtLogged;
+
+  String get uid;
+  @JsonKey(ignore: true)
+  _$$_AppEvtLoggedCopyWith<_$_AppEvtLogged> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_AppEvtLoginErrorCopyWith<$Res> {
+  factory _$$_AppEvtLoginErrorCopyWith(
+          _$_AppEvtLoginError value, $Res Function(_$_AppEvtLoginError) then) =
+      __$$_AppEvtLoginErrorCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String msg});
+}
+
+/// @nodoc
+class __$$_AppEvtLoginErrorCopyWithImpl<$Res>
+    extends _$AppEvtCopyWithImpl<$Res, _$_AppEvtLoginError>
+    implements _$$_AppEvtLoginErrorCopyWith<$Res> {
+  __$$_AppEvtLoginErrorCopyWithImpl(
+      _$_AppEvtLoginError _value, $Res Function(_$_AppEvtLoginError) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? msg = null,
+  }) {
+    return _then(_$_AppEvtLoginError(
+      null == msg
+          ? _value.msg
+          : msg // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_AppEvtLoginError implements _AppEvtLoginError {
+  const _$_AppEvtLoginError(this.msg);
+
+  @override
+  final String msg;
+
+  @override
+  String toString() {
+    return 'AppEvt.loginError(msg: $msg)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_AppEvtLoginError &&
+            (identical(other.msg, msg) || other.msg == msg));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, msg);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_AppEvtLoginErrorCopyWith<_$_AppEvtLoginError> get copyWith =>
+      __$$_AppEvtLoginErrorCopyWithImpl<_$_AppEvtLoginError>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() checkUpdate,
+    required TResult Function(AppUpdateInfo info) needUpdate,
+    required TResult Function(AppUpdateInfo info) ensureUpdate,
+    required TResult Function() login,
+    required TResult Function(String uid) logged,
+    required TResult Function(String msg) loginError,
+    required TResult Function() logout,
+  }) {
+    return loginError(msg);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? checkUpdate,
+    TResult? Function(AppUpdateInfo info)? needUpdate,
+    TResult? Function(AppUpdateInfo info)? ensureUpdate,
+    TResult? Function()? login,
+    TResult? Function(String uid)? logged,
+    TResult? Function(String msg)? loginError,
+    TResult? Function()? logout,
+  }) {
+    return loginError?.call(msg);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? checkUpdate,
+    TResult Function(AppUpdateInfo info)? needUpdate,
+    TResult Function(AppUpdateInfo info)? ensureUpdate,
+    TResult Function()? login,
+    TResult Function(String uid)? logged,
+    TResult Function(String msg)? loginError,
+    TResult Function()? logout,
+    required TResult orElse(),
+  }) {
+    if (loginError != null) {
+      return loginError(msg);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_AppEvtCheckUpdate value) checkUpdate,
+    required TResult Function(_AppEvtNeedUpdate value) needUpdate,
+    required TResult Function(_AppEvtEnsureUpdate value) ensureUpdate,
+    required TResult Function(_AppEvtLogin value) login,
+    required TResult Function(_AppEvtLogged value) logged,
+    required TResult Function(_AppEvtLoginError value) loginError,
+    required TResult Function(_AppEvtLogout value) logout,
+  }) {
+    return loginError(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_AppEvtCheckUpdate value)? checkUpdate,
+    TResult? Function(_AppEvtNeedUpdate value)? needUpdate,
+    TResult? Function(_AppEvtEnsureUpdate value)? ensureUpdate,
+    TResult? Function(_AppEvtLogin value)? login,
+    TResult? Function(_AppEvtLogged value)? logged,
+    TResult? Function(_AppEvtLoginError value)? loginError,
+    TResult? Function(_AppEvtLogout value)? logout,
+  }) {
+    return loginError?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_AppEvtCheckUpdate value)? checkUpdate,
+    TResult Function(_AppEvtNeedUpdate value)? needUpdate,
+    TResult Function(_AppEvtEnsureUpdate value)? ensureUpdate,
+    TResult Function(_AppEvtLogin value)? login,
+    TResult Function(_AppEvtLogged value)? logged,
+    TResult Function(_AppEvtLoginError value)? loginError,
+    TResult Function(_AppEvtLogout value)? logout,
+    required TResult orElse(),
+  }) {
+    if (loginError != null) {
+      return loginError(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AppEvtLoginError implements AppEvt {
+  const factory _AppEvtLoginError(final String msg) = _$_AppEvtLoginError;
+
+  String get msg;
+  @JsonKey(ignore: true)
+  _$$_AppEvtLoginErrorCopyWith<_$_AppEvtLoginError> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_AppEvtLogoutCopyWith<$Res> {
+  factory _$$_AppEvtLogoutCopyWith(
+          _$_AppEvtLogout value, $Res Function(_$_AppEvtLogout) then) =
+      __$$_AppEvtLogoutCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_AppEvtLogoutCopyWithImpl<$Res>
+    extends _$AppEvtCopyWithImpl<$Res, _$_AppEvtLogout>
+    implements _$$_AppEvtLogoutCopyWith<$Res> {
+  __$$_AppEvtLogoutCopyWithImpl(
+      _$_AppEvtLogout _value, $Res Function(_$_AppEvtLogout) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_AppEvtLogout implements _AppEvtLogout {
+  const _$_AppEvtLogout();
+
+  @override
+  String toString() {
+    return 'AppEvt.logout()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_AppEvtLogout);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() checkUpdate,
+    required TResult Function(AppUpdateInfo info) needUpdate,
+    required TResult Function(AppUpdateInfo info) ensureUpdate,
+    required TResult Function() login,
+    required TResult Function(String uid) logged,
+    required TResult Function(String msg) loginError,
+    required TResult Function() logout,
+  }) {
+    return logout();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? checkUpdate,
+    TResult? Function(AppUpdateInfo info)? needUpdate,
+    TResult? Function(AppUpdateInfo info)? ensureUpdate,
+    TResult? Function()? login,
+    TResult? Function(String uid)? logged,
+    TResult? Function(String msg)? loginError,
+    TResult? Function()? logout,
+  }) {
+    return logout?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? checkUpdate,
+    TResult Function(AppUpdateInfo info)? needUpdate,
+    TResult Function(AppUpdateInfo info)? ensureUpdate,
+    TResult Function()? login,
+    TResult Function(String uid)? logged,
+    TResult Function(String msg)? loginError,
+    TResult Function()? logout,
+    required TResult orElse(),
+  }) {
+    if (logout != null) {
+      return logout();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_AppEvtCheckUpdate value) checkUpdate,
+    required TResult Function(_AppEvtNeedUpdate value) needUpdate,
+    required TResult Function(_AppEvtEnsureUpdate value) ensureUpdate,
+    required TResult Function(_AppEvtLogin value) login,
+    required TResult Function(_AppEvtLogged value) logged,
+    required TResult Function(_AppEvtLoginError value) loginError,
+    required TResult Function(_AppEvtLogout value) logout,
+  }) {
+    return logout(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_AppEvtCheckUpdate value)? checkUpdate,
+    TResult? Function(_AppEvtNeedUpdate value)? needUpdate,
+    TResult? Function(_AppEvtEnsureUpdate value)? ensureUpdate,
+    TResult? Function(_AppEvtLogin value)? login,
+    TResult? Function(_AppEvtLogged value)? logged,
+    TResult? Function(_AppEvtLoginError value)? loginError,
+    TResult? Function(_AppEvtLogout value)? logout,
+  }) {
+    return logout?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_AppEvtCheckUpdate value)? checkUpdate,
+    TResult Function(_AppEvtNeedUpdate value)? needUpdate,
+    TResult Function(_AppEvtEnsureUpdate value)? ensureUpdate,
+    TResult Function(_AppEvtLogin value)? login,
+    TResult Function(_AppEvtLogged value)? logged,
+    TResult Function(_AppEvtLoginError value)? loginError,
+    TResult Function(_AppEvtLogout value)? logout,
+    required TResult orElse(),
+  }) {
+    if (logout != null) {
+      return logout(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AppEvtLogout implements AppEvt {
+  const factory _AppEvtLogout() = _$_AppEvtLogout;
 }
 
 /// @nodoc
@@ -811,4 +1497,267 @@ abstract class _ChatEvtReceive implements ChatEvt {
   @JsonKey(ignore: true)
   _$$_ChatEvtReceiveCopyWith<_$_ChatEvtReceive> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$AcctEvt {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() createChat,
+    required TResult Function() loadChats,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? createChat,
+    TResult? Function()? loadChats,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? createChat,
+    TResult Function()? loadChats,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_AcctEvtCreateChat value) createChat,
+    required TResult Function(_AcctEvtLoadChats value) loadChats,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_AcctEvtCreateChat value)? createChat,
+    TResult? Function(_AcctEvtLoadChats value)? loadChats,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_AcctEvtCreateChat value)? createChat,
+    TResult Function(_AcctEvtLoadChats value)? loadChats,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $AcctEvtCopyWith<$Res> {
+  factory $AcctEvtCopyWith(AcctEvt value, $Res Function(AcctEvt) then) =
+      _$AcctEvtCopyWithImpl<$Res, AcctEvt>;
+}
+
+/// @nodoc
+class _$AcctEvtCopyWithImpl<$Res, $Val extends AcctEvt>
+    implements $AcctEvtCopyWith<$Res> {
+  _$AcctEvtCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$_AcctEvtCreateChatCopyWith<$Res> {
+  factory _$$_AcctEvtCreateChatCopyWith(_$_AcctEvtCreateChat value,
+          $Res Function(_$_AcctEvtCreateChat) then) =
+      __$$_AcctEvtCreateChatCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_AcctEvtCreateChatCopyWithImpl<$Res>
+    extends _$AcctEvtCopyWithImpl<$Res, _$_AcctEvtCreateChat>
+    implements _$$_AcctEvtCreateChatCopyWith<$Res> {
+  __$$_AcctEvtCreateChatCopyWithImpl(
+      _$_AcctEvtCreateChat _value, $Res Function(_$_AcctEvtCreateChat) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_AcctEvtCreateChat implements _AcctEvtCreateChat {
+  const _$_AcctEvtCreateChat();
+
+  @override
+  String toString() {
+    return 'AcctEvt.createChat()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_AcctEvtCreateChat);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() createChat,
+    required TResult Function() loadChats,
+  }) {
+    return createChat();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? createChat,
+    TResult? Function()? loadChats,
+  }) {
+    return createChat?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? createChat,
+    TResult Function()? loadChats,
+    required TResult orElse(),
+  }) {
+    if (createChat != null) {
+      return createChat();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_AcctEvtCreateChat value) createChat,
+    required TResult Function(_AcctEvtLoadChats value) loadChats,
+  }) {
+    return createChat(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_AcctEvtCreateChat value)? createChat,
+    TResult? Function(_AcctEvtLoadChats value)? loadChats,
+  }) {
+    return createChat?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_AcctEvtCreateChat value)? createChat,
+    TResult Function(_AcctEvtLoadChats value)? loadChats,
+    required TResult orElse(),
+  }) {
+    if (createChat != null) {
+      return createChat(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AcctEvtCreateChat implements AcctEvt {
+  const factory _AcctEvtCreateChat() = _$_AcctEvtCreateChat;
+}
+
+/// @nodoc
+abstract class _$$_AcctEvtLoadChatsCopyWith<$Res> {
+  factory _$$_AcctEvtLoadChatsCopyWith(
+          _$_AcctEvtLoadChats value, $Res Function(_$_AcctEvtLoadChats) then) =
+      __$$_AcctEvtLoadChatsCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_AcctEvtLoadChatsCopyWithImpl<$Res>
+    extends _$AcctEvtCopyWithImpl<$Res, _$_AcctEvtLoadChats>
+    implements _$$_AcctEvtLoadChatsCopyWith<$Res> {
+  __$$_AcctEvtLoadChatsCopyWithImpl(
+      _$_AcctEvtLoadChats _value, $Res Function(_$_AcctEvtLoadChats) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_AcctEvtLoadChats implements _AcctEvtLoadChats {
+  const _$_AcctEvtLoadChats();
+
+  @override
+  String toString() {
+    return 'AcctEvt.loadChats()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_AcctEvtLoadChats);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() createChat,
+    required TResult Function() loadChats,
+  }) {
+    return loadChats();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? createChat,
+    TResult? Function()? loadChats,
+  }) {
+    return loadChats?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? createChat,
+    TResult Function()? loadChats,
+    required TResult orElse(),
+  }) {
+    if (loadChats != null) {
+      return loadChats();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_AcctEvtCreateChat value) createChat,
+    required TResult Function(_AcctEvtLoadChats value) loadChats,
+  }) {
+    return loadChats(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_AcctEvtCreateChat value)? createChat,
+    TResult? Function(_AcctEvtLoadChats value)? loadChats,
+  }) {
+    return loadChats?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_AcctEvtCreateChat value)? createChat,
+    TResult Function(_AcctEvtLoadChats value)? loadChats,
+    required TResult orElse(),
+  }) {
+    if (loadChats != null) {
+      return loadChats(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AcctEvtLoadChats implements AcctEvt {
+  const factory _AcctEvtLoadChats() = _$_AcctEvtLoadChats;
 }
