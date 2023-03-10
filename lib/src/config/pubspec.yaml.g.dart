@@ -58,7 +58,7 @@ const List<String> pre = <String>[];
 const List<String> build = <String>[];
 
 /// Build date in Unix Time (in seconds)
-const int timestamp = 1678293885;
+const int timestamp = 1678297859;
 
 /// Name [name]
 const String name = r'mind_ai';
@@ -95,6 +95,12 @@ const Map<String, Object> dependencies = <String, Object>{
   'json_annotation': r'>=4.8.0',
   'provider_sidecar': <String, Object>{
     'path': r'../../../IdeaProjects/provider_sidecar',
+  },
+  'get_arch_core': <String, Object>{
+    'git': <String, Object>{
+      'url': r'https://e.coding.net/shuttlecloud/company/get_arch_core.git',
+      'ref': r'v3.0',
+    },
   },
 };
 
