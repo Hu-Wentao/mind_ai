@@ -10,14 +10,47 @@ const baseUrl = String.fromEnvironment(
   'BASE_URL',
   defaultValue: 'http://0.0.0.0:21772',
 );
+const backendUrl = String.fromEnvironment(
+  'BACKEND_URL',
+  defaultValue: 'backend_url',
+);
+
+const backendAnonKey = String.fromEnvironment(
+  'BACKEND_ANON_KEY',
+  defaultValue: 'backend_anon_key',
+);
 
 const kName = spec.name;
 const kVersion = spec.version;
 final kPackAt = DateTime.fromMillisecondsSinceEpoch(spec.timestamp * 1000);
 
 final kEnvDev = MindAIConfig(
-    sign: EnvSign.dev, name: kName, version: kVersion, packAt: kPackAt);
+  sign: EnvSign.dev,
+  name: kName,
+  version: kVersion,
+  packAt: kPackAt,
+  baseUrl: baseUrl,
+  jwt: jwt,
+  backendUrl: backendUrl,
+  backendAnonKey: backendAnonKey,
+);
 final kEnvTest = MindAIConfig(
-    sign: EnvSign.test, name: kName, version: kVersion, packAt: kPackAt);
+  sign: EnvSign.test,
+  name: kName,
+  version: kVersion,
+  packAt: kPackAt,
+  baseUrl: baseUrl,
+  jwt: jwt,
+  backendUrl: backendUrl,
+  backendAnonKey: backendAnonKey,
+);
 final kEnvProd = MindAIConfig(
-    sign: EnvSign.prod, name: kName, version: kVersion, packAt: kPackAt);
+  sign: EnvSign.prod,
+  name: kName,
+  version: kVersion,
+  packAt: kPackAt,
+  baseUrl: baseUrl,
+  jwt: jwt,
+  backendUrl: backendUrl,
+  backendAnonKey: backendAnonKey,
+);

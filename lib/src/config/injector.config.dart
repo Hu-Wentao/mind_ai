@@ -9,7 +9,8 @@ import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:supabase_flutter/supabase_flutter.dart' as _i3;
 
-import '../infra/cloud/backend.dart' as _i4;
+import '../application.dart' as _i4;
+import '../infra/cloud/backend.dart' as _i5;
 
 const String _prod = 'prod';
 const String _test = 'test';
@@ -29,7 +30,7 @@ Future<_i1.GetIt> $initGetIt(
   );
   final backend = _$Backend();
   await gh.lazySingletonAsync<_i3.Supabase>(
-    () => backend.backend(),
+    () => backend.backend(get<_i4.MindAIConfig>()),
     registerFor: {
       _prod,
       _test,
@@ -40,4 +41,4 @@ Future<_i1.GetIt> $initGetIt(
   return get;
 }
 
-class _$Backend extends _i4.Backend {}
+class _$Backend extends _i5.Backend {}

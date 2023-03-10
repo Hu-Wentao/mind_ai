@@ -1,12 +1,21 @@
 import 'package:get_arch_core/get_arch_core.dart';
 
 class MindAIConfig extends BaseConfig {
+  final String baseUrl;
+  final String jwt;
+  final String backendUrl;
+  final String backendAnonKey;
+
   MindAIConfig({
-    required EnvSign sign,
-    required String name,
-    required String version,
-    required DateTime packAt,
-  }) : super(sign: sign, name: name, version: version, packAt: packAt);
+    required super.sign,
+    required super.name,
+    required super.version,
+    required super.packAt,
+    required this.baseUrl,
+    required this.jwt,
+    required this.backendUrl,
+    required this.backendAnonKey,
+  });
 }
 
 class MindAIPackage extends BasePackage<MindAIConfig> {
@@ -14,16 +23,16 @@ class MindAIPackage extends BasePackage<MindAIConfig> {
     Future<void> Function(GetIt g, MindAIConfig c)? onBeforePkgInit,
     Future<void> Function(GetIt g, MindAIConfig config)? onAfterPkgInit,
     Future<void> Function(MindAIConfig config, Object e, StackTrace s)?
-    onPkgInitError,
+        onPkgInitError,
     Future<void> Function(MindAIConfig config)? onPkgInitFinally,
     Future<void> Function(GetIt g, MindAIConfig config)? initPackageDI,
   }) : super(
-    onBeforePkgInit,
-    onAfterPkgInit,
-    onPkgInitError,
-    onPkgInitFinally,
-    initPackageDI,
-  );
+          onBeforePkgInit,
+          onAfterPkgInit,
+          onPkgInitError,
+          onPkgInitFinally,
+          initPackageDI,
+        );
 }
 
 class MindAIApplication extends MindAIPackage with MxAppRun<MindAIConfig> {
@@ -38,11 +47,11 @@ class MindAIApplication extends MindAIPackage with MxAppRun<MindAIConfig> {
 
   @override
   final Future<void> Function(GetIt getIt, MindAIConfig config)?
-  onApplicationRun;
+      onApplicationRun;
 
   @override
   final Future<void> Function(GetIt getIt, MindAIConfig config)?
-  onBeforeAppInit;
+      onBeforeAppInit;
 
   @override
   final Future<void> Function(GetIt g)? onBeforeAppRun;
