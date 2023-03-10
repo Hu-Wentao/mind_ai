@@ -48,6 +48,8 @@ dependencies:
       url: https://e.coding.net/shuttlecloud/company/get_arch_core.git
       ref: v3.0
   ndialog:
+  supabase_flutter:
+  injectable:
 
 dev_dependencies:
   flutter_test:
@@ -60,6 +62,7 @@ dev_dependencies:
   flutter_distributor:
   flutter_lints: ^2.0.1
   go_router_builder:
+  injectable_generator:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
