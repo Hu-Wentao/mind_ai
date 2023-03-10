@@ -50,7 +50,11 @@ dependencies:
   ndialog:
   supabase_flutter:
   injectable:
-
+  get_sweet:
+    git:
+      url: https://gitee.com/hu_wt/get_sweet
+      ref: main
+  logging:
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -1,65 +1,56 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:mind_ai/src/application/provider.dart';
-import 'package:mind_ai/src/infra/ui/router.dart';
-import 'package:provider_sidecar/provider_sidecar_ex.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+import 'dart:io';
 
-final _router = GoRouter(
-    // 必须打开,否则全局logging都将被取消
-    debugLogDiagnostics: true,
-    initialLocation: const SplashRoute().location,
-    routes: $appRoutes,
-    // routes: [
-    //   $splashRoute,
-    // ],
-    errorBuilder: (c, s) {
-      return Scaffold(
-        appBar: AppBar(title: const Text("导航出错了")),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text("找不到路径：${s.fullpath}"),
-            TextButton(
-                onPressed: () => const SplashRoute().go(c),
-                child: const Text("回到首页")),
-          ],
-        ),
-      );
-    });
+import 'package:flutter/foundation.dart';
+import 'package:flutter/services.dart';
+import 'package:get_arch_core/get_arch_core.dart';
+import 'package:get_sweet/get_sweet.dart';
+import 'package:logging/logging.dart';
+import 'package:mind_ai/src/application.dart';
+import 'package:mind_ai/src/config/injector.dart';
+import 'package:mind_ai/src/infra/app.dart';
+import 'package:provider_sidecar/provider_sidecar.dart';
+import 'main_dev.dart' as dev;
+import 'main_tst.dart' as tst;
+import 'main_prod.dart' as prod;
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider<AppModel>(create: (_) => AppModel()),
-        ChangeNotifierProxyProvider<AppModel, AcctModel?>(
-          create: (_) => null,
-          update: (c, m, b) => m.chosenAcct,
-        ),
-        // 通过路由确定特定ChatModel
-        // ChangeNotifierProxyProvider<AcctModel?, ChatModel?>(
-        //   create: (_) => null,
-        //   update: (c, m, b) => m?.chosenChat,
-        // ),
-      ],
-      child: MaterialApp.router(
-        title: 'Mind AI',
-        theme: ThemeData(primarySwatch: Colors.blue),
-        // 配置 router
-        routeInformationProvider: _router.routeInformationProvider,
-        routeInformationParser: _router.routeInformationParser,
-        routerDelegate: _router.routerDelegate,
-      ),
+runApplication(MindAIConfig config) => MindAIApplication(
+      onBeforeAppInit: (g, c) async =>
+          WidgetsFlutterBinding.ensureInitialized(),
+      onBeforeAppRun: (g) async {
+        // 配置 ProviderSidecar Log
+        final sidecarLogger = Logger("sidecar");
+        SidecarLoggerMx.setLogger(sidecarLogger.info);
+      },
+      onApplicationRun: (g, c) async => runApp(MindAIApp(sl: g, config: c)),
+      onAfterAppRun: () async {
+        if (!kIsWeb) {
+          if (Platform.isAndroid) {
+            // 设置状态栏背景及颜色
+            const SystemUiOverlayStyle(statusBarColor: Colors.transparent)
+                .let(SystemChrome.setSystemUIOverlayStyle);
+            // SystemChrome.setEnabledSystemUIOverlays([]); //隐藏状态栏
+          }
+        }
+      },
+      initPackageDI: initPackageDI,
+    ).run(
+      GetIt.I,
+      config,
     );
+
+/// 默认dev环境
+main() {
+  final sign = EnvSign.values[const int.fromEnvironment('EnvSign')];
+  switch (sign) {
+    case EnvSign.dev:
+      return dev.main();
+    case EnvSign.test:
+      return tst.main();
+    case EnvSign.prod:
+      return prod.main();
   }
 }
