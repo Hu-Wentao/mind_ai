@@ -50,4 +50,6 @@ class ChatModel extends SidecarModel<ChatEvt, String> {
     state = state.mergeContent(rsp);
     setState('receive [$rsp]');
   }
+
+  ChatService get chatService => sl<ChatService>();
 }

@@ -107,4 +107,6 @@ extension AppVersionX on AppModel {
     await AzhonAppUpdate.update(model);
     return null;
   }
+
+  AppService get appService => sl<AppService>();
 }
