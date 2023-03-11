@@ -42,7 +42,10 @@ Future<_i1.GetIt> $initGetIt(
     },
     preResolve: true,
   );
-  gh.lazySingleton<_i6.AppService>(() => service.appService(get<_i3.Dio>()));
+  gh.lazySingleton<_i6.AppService>(() => service.appService(
+        get<_i3.Dio>(),
+        get<_i4.Supabase>(),
+      ));
   gh.lazySingleton<_i6.ChatService>(() => service.chatService(get<_i3.Dio>()));
   return get;
 }

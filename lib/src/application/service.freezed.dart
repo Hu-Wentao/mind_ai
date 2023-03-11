@@ -118,7 +118,7 @@ class __$$_AppUpdateInfoCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_AppUpdateInfo implements _AppUpdateInfo {
+class _$_AppUpdateInfo with DiagnosticableTreeMixin implements _AppUpdateInfo {
   const _$_AppUpdateInfo({required this.version, this.desc, this.url});
 
   factory _$_AppUpdateInfo.fromJson(Map<String, dynamic> json) =>
@@ -132,8 +132,18 @@ class _$_AppUpdateInfo implements _AppUpdateInfo {
   final String? url;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'AppUpdateInfo(version: $version, desc: $desc, url: $url)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'AppUpdateInfo'))
+      ..add(DiagnosticsProperty('version', version))
+      ..add(DiagnosticsProperty('desc', desc))
+      ..add(DiagnosticsProperty('url', url));
   }
 
   @override

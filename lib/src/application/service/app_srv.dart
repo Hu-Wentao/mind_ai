@@ -2,8 +2,9 @@ part of '../service.dart';
 
 class AppService {
   final Dio _dio;
+  final Supabase backend;
 
-  AppService(this._dio);
+  AppService(this._dio, this.backend);
 
   /// 检查App更新，如果没有更新返回null
   Future<AppUpdateInfo?> checkVersion() async {
@@ -20,7 +21,32 @@ class AppService {
     // 匿名登陆
     final id = await PlatformDeviceId.getDeviceId;
     if (id == null) throw Exception('获取设备ID失败');
+    // 标记匿名登陆
+    _regAnnoAcct(platformId: id, platform: Platform.operatingSystem);
     return id;
+  }
+
+  Future<void> _regAnnoAcct({
+    required String platformId,
+    required String platform,
+  }) async {
+    const tbAnnoAcct = 'anno_acct';
+    const coUserIdTbAnnoAct = 'user_id';
+    const coPlatformIdTbAnnoAct = 'platform_id';
+    final rsp = await backend.client
+        .from(tbAnnoAcct)
+        .select("$coPlatformIdTbAnnoAct, $coUserIdTbAnnoAct")
+        .eq(
+          coPlatformIdTbAnnoAct,
+          platformId,
+        );
+    print(
+        "debug _regAnnoAcct rsp: $rsp, isJs ${rsp is Map<String, dynamic>}, isList ${rsp is List<dynamic>}");
+
+    return await backend.client.from(tbAnnoAcct).insert({
+      "platform_uuid": platformId,
+      "platform": platform,
+    });
   }
 }
 
