@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:get_arch_core/get_arch_core.dart';
+import 'package:platform_device_id/platform_device_id.dart';
 
 import '../config/config.dart';
 import '../domain/domain.dart';

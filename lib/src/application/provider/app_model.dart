@@ -49,12 +49,14 @@ extension AppAcctX on AppModel {
   login() async {
     // todo 先尝试通过本地token登陆
     // 匿名登陆
-    final deviceId = await PlatformDeviceId.getDeviceId;
-    if (deviceId == null) {
-      add(const AppEvt.loginError('获取设备ID失败'));
-      return;
-    }
-    add(AppEvt.logged(deviceId));
+    await appService.login().then(
+      (deviceId) {
+        add(AppEvt.logged(deviceId));
+      },
+      onError: (e, s) {
+        add(AppEvt.loginError(e.toString()));
+      },
+    );
   }
 
   logged(String uid) {

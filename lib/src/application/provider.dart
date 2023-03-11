@@ -9,7 +9,6 @@ import 'package:provider_sidecar/provider_sidecar.dart';
 import 'package:flutter_app_update/azhon_app_update.dart';
 
 import '../inter/inter.dart';
-import 'package:platform_device_id/platform_device_id.dart';
 import 'package:cuid2/cuid2.dart';
 
 part 'provider.freezed.dart';
