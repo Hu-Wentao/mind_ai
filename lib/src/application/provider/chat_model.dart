@@ -23,7 +23,7 @@ class ChatModel extends SidecarModel<ChatEvt, String> {
 
   ChatModel({required super.id});
 
-  factory ChatModel.create() => ChatModel(id: cuid());
+  factory ChatModel.create() => ChatModel(id: sl<Uuid>().v4());
 
   String get modelTp => state.model_id;
 

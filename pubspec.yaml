@@ -40,7 +40,7 @@ dependencies:
   url_launcher:
   flutter_app_update:
   platform_device_id:
-  cuid2:
+  uuid:
   go_router:
   collection:
   get_arch_core:

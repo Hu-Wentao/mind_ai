@@ -10,11 +10,12 @@ import 'package:dio/dio.dart' as _i5;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:supabase_flutter/supabase_flutter.dart' as _i8;
+import 'package:uuid/uuid.dart' as _i9;
 
 import '../application.dart' as _i4;
 import '../application/service.dart' as _i3;
 import '../infra/cloud/backend.dart' as _i7;
-import '../infra/local/local.dart' as _i9;
+import '../infra/local/local.dart' as _i10;
 
 const String _prod = 'prod';
 const String _test = 'test';
@@ -57,6 +58,7 @@ Future<_i1.GetIt> $initGetIt(
     },
     preResolve: true,
   );
+  gh.lazySingleton<_i9.Uuid>(() => local.uuid);
   gh.lazySingleton<_i3.AppService>(() => service.appService(
         get<_i8.Supabase>(),
         get<_i4.MindAIConfig>(),
@@ -89,7 +91,7 @@ Future<_i1.GetIt> $initGetIt(
   return get;
 }
 
-class _$Local extends _i9.Local {}
+class _$Local extends _i10.Local {}
 
 class _$Service extends _i3.Service {}
 
