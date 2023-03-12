@@ -37,7 +37,7 @@ Future<_i1.GetIt> $initGetIt(
     () => openAIModule.openaiDio(get<_i4.MindAIConfig>()),
     instanceName: 'OpenAI',
   );
-  gh.lazySingleton<_i3.Dio>(() => service.dio());
+  gh.lazySingleton<_i3.Dio>(() => service.dio(get<_i4.MindAIConfig>()));
   gh.lazySingleton<_i5.OpenAIInterceptor>(
       () => openAIModule.openaiInterceptor(get<_i4.MindAIConfig>()));
   await gh.lazySingletonAsync<_i6.Supabase>(
@@ -52,6 +52,7 @@ Future<_i1.GetIt> $initGetIt(
   gh.lazySingleton<_i7.AppService>(() => service.appService(
         get<_i3.Dio>(),
         get<_i6.Supabase>(),
+        get<_i4.MindAIConfig>(),
       ));
   gh.lazySingleton<_i7.ChatService>(() => service.chatService(get<_i3.Dio>()));
   return get;

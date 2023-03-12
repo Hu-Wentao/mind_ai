@@ -1,5 +1,6 @@
 import 'package:dart_openai/openai.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get_arch_core/get_arch_core.dart';
 import 'package:mind_ai/src/application.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -14,6 +15,8 @@ abstract class Backend {
   Future<Supabase> backend(MindAIConfig cfg) async => await Supabase.initialize(
         url: cfg.baseUrl,
         anonKey: cfg.backendAnonKey,
+        headers: {"Version": cfg.version},
+        debug: !kReleaseMode,
       );
 }
 

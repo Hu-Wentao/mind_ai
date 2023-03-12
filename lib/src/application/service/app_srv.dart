@@ -3,17 +3,18 @@ part of '../service.dart';
 class AppService {
   final Dio _dio;
   final Supabase backend;
+  final MindAIConfig cfg;
 
-  AppService(this._dio, this.backend);
+  AppService(this._dio, this.backend, this.cfg);
 
   /// 检查App更新，如果没有更新返回null
   Future<AppUpdateInfo?> checkVersion() async {
-    final rsp = await _dio.get('/client/version', queryParameters: {
+    final rsp = await backend.client.functions.invoke('version_check', body: {
       "platform": Platform.operatingSystem,
-      'v': version,
+      'v': cfg.version,
     });
     final info = AppUpdateInfo.fromJson(rsp.data);
-    if (info.version == version) return null;
+    if (info.version == cfg.version) return null;
     return info;
   }
 

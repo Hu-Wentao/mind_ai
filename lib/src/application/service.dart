@@ -4,10 +4,10 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:get_arch_core/get_arch_core.dart';
+import 'package:mind_ai/src/application.dart';
 import 'package:platform_device_id/platform_device_id.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-import '../config/config.dart';
 import '../domain/domain.dart';
 
 part 'service.freezed.dart';
@@ -21,13 +21,13 @@ part 'service/chat_srv.dart';
 @module
 abstract class Service {
   @lazySingleton
-  Dio dio() {
+  Dio dio(MindAIConfig cfg) {
     final d = Dio(BaseOptions(
-      baseUrl: baseUrl,
+      baseUrl: cfg.baseUrl,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer $jwt',
-        'Version': version
+        'Authorization': 'Bearer ${cfg.jwt}',
+        'Version': cfg.version
       },
     ));
     if (!kReleaseMode) {
@@ -40,7 +40,8 @@ abstract class Service {
   }
 
   @lazySingleton
-  AppService appService(Dio dio, Supabase s) => AppService(dio, s);
+  AppService appService(Dio dio, Supabase s, MindAIConfig cfg) =>
+      AppService(dio, s, cfg);
 
   @lazySingleton
   ChatService chatService(Dio dio) => ChatService(dio);
