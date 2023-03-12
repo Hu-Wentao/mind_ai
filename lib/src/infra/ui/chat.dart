@@ -22,6 +22,7 @@ class _ChatPageState extends State<ChatPage> {
   Widget build(BuildContext context) {
     // 此处添加的 ChatModel只在本页内有效
     return ChangeNotifierProxyProvider<AcctModel?, ChatModel?>(
+      noDispose: true,
       create: (_) => null,
       update: (c, m, b) =>
           m?.chats.firstWhereOrNull((e) => e.id == widget.chatId),
@@ -45,7 +46,7 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen>
-    with OnInitStateMx<ChatScreen, AcctModel?> {
+    with OnInitStateMx2<ChatScreen, AcctModel?, ChatModel?> {
   late final TextEditingController controller;
   late final ScrollController scrollController;
 
@@ -57,9 +58,26 @@ class _ChatScreenState extends State<ChatScreen>
   }
 
   @override
-  StreamSubscription? onInitState(ScaffoldMessengerState msgr, AcctModel? a) {
-    return a?.events.listen((e) {
-      e.whenOrNull(chatCreated: (id) => ChatRoute(chatId: id).go(context));
+  Iterable<StreamSubscription?> onInitState(
+    ScaffoldMessengerState msgr,
+    AcctModel? a,
+    ChatModel? b,
+  ) sync* {
+    yield a?.events.listen((e) => e.whenOrNull(
+          chatCreated: (id) => ChatRoute(chatId: id).go(context),
+        ));
+    yield b?.events.listen((event) {
+      event.whenOrNull(
+        receiveError: (e) => msgr.showMaterialBanner(MaterialBanner(
+          content: Text("消息出错,请尝试重新发送"),
+          actions: [
+            ElevatedButton(
+              onPressed: () => b.add(const ChatEvt.retry()),
+              child: Text("重新发送"),
+            )
+          ],
+        )),
+      );
     });
   }
 
