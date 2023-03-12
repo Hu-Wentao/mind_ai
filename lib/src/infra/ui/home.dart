@@ -21,7 +21,7 @@ class _HomePageState extends State<HomePage>
     with OnInitStateMx<HomePage, AppModel> {
   @override
   StreamSubscription? onInitState(ScaffoldMessengerState msgr, AppModel a) {
-    print("debug HomePage.onInitState");
+    // print("debug HomePage.onInitState");
     a
       ..add(const AppEvt.checkUpdate())
       ..add(const AppEvt.login());
@@ -47,6 +47,7 @@ class _HomePageState extends State<HomePage>
       body: MdMainColumn(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          /// 默认区
           const Padding(
             padding: EdgeInsets.all(8.0),
             child: Text("默认模型"),
@@ -57,6 +58,13 @@ class _HomePageState extends State<HomePage>
             onTap: () => const ChatRoute.create().go(context),
           ),
           Divider(),
+
+          /// 已创建的聊天
+          const Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Text("聊天列表"),
+          ),
+          const ChatListView(),
         ],
       ),
     );
@@ -87,4 +95,24 @@ class _HomePageState extends State<HomePage>
       ],
     );
   }
+}
+
+class ChatListView extends StatelessWidget {
+  const ChatListView({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) => Consumer<AcctModel?>(
+        builder: (c, m, _) => Column(
+          children: [
+            for (final chat in m?.chats ?? <ChatModel>[])
+              ListTile(
+                title: Text(chat.modelTp),
+                subtitle: Text(chat.id),
+                onTap: () => ChatRoute(chatId: chat.id).go(context),
+              ),
+          ],
+        ),
+      );
 }
