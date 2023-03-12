@@ -1180,18 +1180,24 @@ mixin _$ChatEvt {
   TResult when<TResult extends Object?>({
     required TResult Function(String msg) ask,
     required TResult Function(MsgGpt35Rsp rsp) receive,
+    required TResult Function(String msg) receiveError,
+    required TResult Function() retry,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String msg)? ask,
     TResult? Function(MsgGpt35Rsp rsp)? receive,
+    TResult? Function(String msg)? receiveError,
+    TResult? Function()? retry,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String msg)? ask,
     TResult Function(MsgGpt35Rsp rsp)? receive,
+    TResult Function(String msg)? receiveError,
+    TResult Function()? retry,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -1199,18 +1205,24 @@ mixin _$ChatEvt {
   TResult map<TResult extends Object?>({
     required TResult Function(_ChatEvtAsk value) ask,
     required TResult Function(_ChatEvtReceive value) receive,
+    required TResult Function(_ChatEvtReceiveError value) receiveError,
+    required TResult Function(_ChatEvtRetry value) retry,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ChatEvtAsk value)? ask,
     TResult? Function(_ChatEvtReceive value)? receive,
+    TResult? Function(_ChatEvtReceiveError value)? receiveError,
+    TResult? Function(_ChatEvtRetry value)? retry,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ChatEvtAsk value)? ask,
     TResult Function(_ChatEvtReceive value)? receive,
+    TResult Function(_ChatEvtReceiveError value)? receiveError,
+    TResult Function(_ChatEvtRetry value)? retry,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -1299,6 +1311,8 @@ class _$_ChatEvtAsk implements _ChatEvtAsk {
   TResult when<TResult extends Object?>({
     required TResult Function(String msg) ask,
     required TResult Function(MsgGpt35Rsp rsp) receive,
+    required TResult Function(String msg) receiveError,
+    required TResult Function() retry,
   }) {
     return ask(msg);
   }
@@ -1308,6 +1322,8 @@ class _$_ChatEvtAsk implements _ChatEvtAsk {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String msg)? ask,
     TResult? Function(MsgGpt35Rsp rsp)? receive,
+    TResult? Function(String msg)? receiveError,
+    TResult? Function()? retry,
   }) {
     return ask?.call(msg);
   }
@@ -1317,6 +1333,8 @@ class _$_ChatEvtAsk implements _ChatEvtAsk {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String msg)? ask,
     TResult Function(MsgGpt35Rsp rsp)? receive,
+    TResult Function(String msg)? receiveError,
+    TResult Function()? retry,
     required TResult orElse(),
   }) {
     if (ask != null) {
@@ -1330,6 +1348,8 @@ class _$_ChatEvtAsk implements _ChatEvtAsk {
   TResult map<TResult extends Object?>({
     required TResult Function(_ChatEvtAsk value) ask,
     required TResult Function(_ChatEvtReceive value) receive,
+    required TResult Function(_ChatEvtReceiveError value) receiveError,
+    required TResult Function(_ChatEvtRetry value) retry,
   }) {
     return ask(this);
   }
@@ -1339,6 +1359,8 @@ class _$_ChatEvtAsk implements _ChatEvtAsk {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ChatEvtAsk value)? ask,
     TResult? Function(_ChatEvtReceive value)? receive,
+    TResult? Function(_ChatEvtReceiveError value)? receiveError,
+    TResult? Function(_ChatEvtRetry value)? retry,
   }) {
     return ask?.call(this);
   }
@@ -1348,6 +1370,8 @@ class _$_ChatEvtAsk implements _ChatEvtAsk {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ChatEvtAsk value)? ask,
     TResult Function(_ChatEvtReceive value)? receive,
+    TResult Function(_ChatEvtReceiveError value)? receiveError,
+    TResult Function(_ChatEvtRetry value)? retry,
     required TResult orElse(),
   }) {
     if (ask != null) {
@@ -1432,6 +1456,8 @@ class _$_ChatEvtReceive implements _ChatEvtReceive {
   TResult when<TResult extends Object?>({
     required TResult Function(String msg) ask,
     required TResult Function(MsgGpt35Rsp rsp) receive,
+    required TResult Function(String msg) receiveError,
+    required TResult Function() retry,
   }) {
     return receive(rsp);
   }
@@ -1441,6 +1467,8 @@ class _$_ChatEvtReceive implements _ChatEvtReceive {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String msg)? ask,
     TResult? Function(MsgGpt35Rsp rsp)? receive,
+    TResult? Function(String msg)? receiveError,
+    TResult? Function()? retry,
   }) {
     return receive?.call(rsp);
   }
@@ -1450,6 +1478,8 @@ class _$_ChatEvtReceive implements _ChatEvtReceive {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String msg)? ask,
     TResult Function(MsgGpt35Rsp rsp)? receive,
+    TResult Function(String msg)? receiveError,
+    TResult Function()? retry,
     required TResult orElse(),
   }) {
     if (receive != null) {
@@ -1463,6 +1493,8 @@ class _$_ChatEvtReceive implements _ChatEvtReceive {
   TResult map<TResult extends Object?>({
     required TResult Function(_ChatEvtAsk value) ask,
     required TResult Function(_ChatEvtReceive value) receive,
+    required TResult Function(_ChatEvtReceiveError value) receiveError,
+    required TResult Function(_ChatEvtRetry value) retry,
   }) {
     return receive(this);
   }
@@ -1472,6 +1504,8 @@ class _$_ChatEvtReceive implements _ChatEvtReceive {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ChatEvtAsk value)? ask,
     TResult? Function(_ChatEvtReceive value)? receive,
+    TResult? Function(_ChatEvtReceiveError value)? receiveError,
+    TResult? Function(_ChatEvtRetry value)? retry,
   }) {
     return receive?.call(this);
   }
@@ -1481,6 +1515,8 @@ class _$_ChatEvtReceive implements _ChatEvtReceive {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ChatEvtAsk value)? ask,
     TResult Function(_ChatEvtReceive value)? receive,
+    TResult Function(_ChatEvtReceiveError value)? receiveError,
+    TResult Function(_ChatEvtRetry value)? retry,
     required TResult orElse(),
   }) {
     if (receive != null) {
@@ -1497,6 +1533,266 @@ abstract class _ChatEvtReceive implements ChatEvt {
   @JsonKey(ignore: true)
   _$$_ChatEvtReceiveCopyWith<_$_ChatEvtReceive> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_ChatEvtReceiveErrorCopyWith<$Res> {
+  factory _$$_ChatEvtReceiveErrorCopyWith(_$_ChatEvtReceiveError value,
+          $Res Function(_$_ChatEvtReceiveError) then) =
+      __$$_ChatEvtReceiveErrorCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String msg});
+}
+
+/// @nodoc
+class __$$_ChatEvtReceiveErrorCopyWithImpl<$Res>
+    extends _$ChatEvtCopyWithImpl<$Res, _$_ChatEvtReceiveError>
+    implements _$$_ChatEvtReceiveErrorCopyWith<$Res> {
+  __$$_ChatEvtReceiveErrorCopyWithImpl(_$_ChatEvtReceiveError _value,
+      $Res Function(_$_ChatEvtReceiveError) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? msg = null,
+  }) {
+    return _then(_$_ChatEvtReceiveError(
+      null == msg
+          ? _value.msg
+          : msg // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_ChatEvtReceiveError implements _ChatEvtReceiveError {
+  const _$_ChatEvtReceiveError(this.msg);
+
+  @override
+  final String msg;
+
+  @override
+  String toString() {
+    return 'ChatEvt.receiveError(msg: $msg)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_ChatEvtReceiveError &&
+            (identical(other.msg, msg) || other.msg == msg));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, msg);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_ChatEvtReceiveErrorCopyWith<_$_ChatEvtReceiveError> get copyWith =>
+      __$$_ChatEvtReceiveErrorCopyWithImpl<_$_ChatEvtReceiveError>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String msg) ask,
+    required TResult Function(MsgGpt35Rsp rsp) receive,
+    required TResult Function(String msg) receiveError,
+    required TResult Function() retry,
+  }) {
+    return receiveError(msg);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String msg)? ask,
+    TResult? Function(MsgGpt35Rsp rsp)? receive,
+    TResult? Function(String msg)? receiveError,
+    TResult? Function()? retry,
+  }) {
+    return receiveError?.call(msg);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String msg)? ask,
+    TResult Function(MsgGpt35Rsp rsp)? receive,
+    TResult Function(String msg)? receiveError,
+    TResult Function()? retry,
+    required TResult orElse(),
+  }) {
+    if (receiveError != null) {
+      return receiveError(msg);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ChatEvtAsk value) ask,
+    required TResult Function(_ChatEvtReceive value) receive,
+    required TResult Function(_ChatEvtReceiveError value) receiveError,
+    required TResult Function(_ChatEvtRetry value) retry,
+  }) {
+    return receiveError(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ChatEvtAsk value)? ask,
+    TResult? Function(_ChatEvtReceive value)? receive,
+    TResult? Function(_ChatEvtReceiveError value)? receiveError,
+    TResult? Function(_ChatEvtRetry value)? retry,
+  }) {
+    return receiveError?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ChatEvtAsk value)? ask,
+    TResult Function(_ChatEvtReceive value)? receive,
+    TResult Function(_ChatEvtReceiveError value)? receiveError,
+    TResult Function(_ChatEvtRetry value)? retry,
+    required TResult orElse(),
+  }) {
+    if (receiveError != null) {
+      return receiveError(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ChatEvtReceiveError implements ChatEvt {
+  const factory _ChatEvtReceiveError(final String msg) = _$_ChatEvtReceiveError;
+
+  String get msg;
+  @JsonKey(ignore: true)
+  _$$_ChatEvtReceiveErrorCopyWith<_$_ChatEvtReceiveError> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_ChatEvtRetryCopyWith<$Res> {
+  factory _$$_ChatEvtRetryCopyWith(
+          _$_ChatEvtRetry value, $Res Function(_$_ChatEvtRetry) then) =
+      __$$_ChatEvtRetryCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_ChatEvtRetryCopyWithImpl<$Res>
+    extends _$ChatEvtCopyWithImpl<$Res, _$_ChatEvtRetry>
+    implements _$$_ChatEvtRetryCopyWith<$Res> {
+  __$$_ChatEvtRetryCopyWithImpl(
+      _$_ChatEvtRetry _value, $Res Function(_$_ChatEvtRetry) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_ChatEvtRetry implements _ChatEvtRetry {
+  const _$_ChatEvtRetry();
+
+  @override
+  String toString() {
+    return 'ChatEvt.retry()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_ChatEvtRetry);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String msg) ask,
+    required TResult Function(MsgGpt35Rsp rsp) receive,
+    required TResult Function(String msg) receiveError,
+    required TResult Function() retry,
+  }) {
+    return retry();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String msg)? ask,
+    TResult? Function(MsgGpt35Rsp rsp)? receive,
+    TResult? Function(String msg)? receiveError,
+    TResult? Function()? retry,
+  }) {
+    return retry?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String msg)? ask,
+    TResult Function(MsgGpt35Rsp rsp)? receive,
+    TResult Function(String msg)? receiveError,
+    TResult Function()? retry,
+    required TResult orElse(),
+  }) {
+    if (retry != null) {
+      return retry();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ChatEvtAsk value) ask,
+    required TResult Function(_ChatEvtReceive value) receive,
+    required TResult Function(_ChatEvtReceiveError value) receiveError,
+    required TResult Function(_ChatEvtRetry value) retry,
+  }) {
+    return retry(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ChatEvtAsk value)? ask,
+    TResult? Function(_ChatEvtReceive value)? receive,
+    TResult? Function(_ChatEvtReceiveError value)? receiveError,
+    TResult? Function(_ChatEvtRetry value)? retry,
+  }) {
+    return retry?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ChatEvtAsk value)? ask,
+    TResult Function(_ChatEvtReceive value)? receive,
+    TResult Function(_ChatEvtReceiveError value)? receiveError,
+    TResult Function(_ChatEvtRetry value)? retry,
+    required TResult orElse(),
+  }) {
+    if (retry != null) {
+      return retry(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ChatEvtRetry implements ChatEvt {
+  const factory _ChatEvtRetry() = _$_ChatEvtRetry;
 }
 
 /// @nodoc

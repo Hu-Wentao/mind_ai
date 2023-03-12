@@ -5,6 +5,10 @@ class ChatEvt with _$ChatEvt {
   const factory ChatEvt.ask(String msg) = _ChatEvtAsk;
 
   const factory ChatEvt.receive(MsgGpt35Rsp rsp) = _ChatEvtReceive;
+
+  const factory ChatEvt.receiveError(String msg) = _ChatEvtReceiveError;
+
+  const factory ChatEvt.retry() = _ChatEvtRetry;
 }
 
 class ChatModel extends SidecarModel<ChatEvt, String> {
@@ -21,10 +25,14 @@ class ChatModel extends SidecarModel<ChatEvt, String> {
 
   factory ChatModel.create() => ChatModel(id: cuid());
 
+  String get modelTp => state.model_id;
+
   @override
   FutureOr<void> onEvent(ChatEvt evt) => evt.when(
         ask: ask,
         receive: receive,
+        receiveError: (e) {},
+        retry: retry,
       );
 
   ask(String msg) async {
@@ -35,7 +43,7 @@ class ChatModel extends SidecarModel<ChatEvt, String> {
     }
     log('sk [$sk]');
 
-    //
+    // 更新状态
     final content = Gpt35ChoicesDto(
       index: state.content.length,
       message: MsgGpt35ContentDto(
@@ -45,22 +53,34 @@ class ChatModel extends SidecarModel<ChatEvt, String> {
       finish_reason: '',
     );
     state = state.addContent(content);
-
-    // setState('ask [$msg]');
-    // 不发送全部历史，从finish_reason == stop截取
-    // 普通用户给3轮对话，注册用户给5轮对话
-    final sender = state.toReqByStop(stop: 3);
-    setState('ask.send [${sender.toJson()}]');
-    final nMsg = await _chatSrv.chat(
-      sk: sk,
-      msg: sender,
-    );
-    add(ChatEvt.receive(nMsg));
+    // 发送状态中的消息
+    await _sendMsgByState();
   }
 
   receive(MsgGpt35Rsp rsp) {
     state = state.mergeContent(rsp);
     setState('receive [$rsp]');
+  }
+
+  retry() async {
+    await _sendMsgByState();
+  }
+
+  _sendMsgByState() async {
+    // 不发送全部历史，从finish_reason == stop截取
+    // 普通用户给3轮对话，注册用户给5轮对话
+    final sender = state.toReqByStop(stop: 3);
+    setState('ask.send [${sender.toJson()}]');
+    try {
+      final nMsg = await _chatSrv.chat(
+        sk: sk,
+        msg: sender,
+      );
+      add(ChatEvt.receive(nMsg));
+    } catch (e, s) {
+      log('ask.error [$e] [$s]');
+      add(ChatEvt.receiveError('$e'));
+    }
   }
 
   ChatService get _chatSrv => sl<ChatService>();
