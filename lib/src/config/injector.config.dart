@@ -5,15 +5,16 @@
 // **************************************************************************
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:dart_openai/openai.dart' as _i5;
-import 'package:dio/dio.dart' as _i3;
+import 'package:dart_openai/openai.dart' as _i6;
+import 'package:dio/dio.dart' as _i5;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
-import 'package:supabase_flutter/supabase_flutter.dart' as _i7;
+import 'package:supabase_flutter/supabase_flutter.dart' as _i8;
 
 import '../application.dart' as _i4;
-import '../application/service.dart' as _i8;
-import '../infra/cloud/backend.dart' as _i6;
+import '../application/service.dart' as _i3;
+import '../infra/cloud/backend.dart' as _i7;
+import '../infra/local/local.dart' as _i9;
 
 const String _prod = 'prod';
 const String _test = 'test';
@@ -31,19 +32,24 @@ Future<_i1.GetIt> $initGetIt(
     environment,
     environmentFilter,
   );
+  final local = _$Local();
   final service = _$Service();
   final openAIModule = _$OpenAIModule();
   final backend = _$Backend();
-  gh.lazySingleton<_i3.Dio>(() => service.dio(get<_i4.MindAIConfig>()));
-  gh.lazySingleton<_i5.OpenAI>(() => openAIModule.openai());
-  gh.lazySingleton<_i6.OpenAIInterceptor>(
+  await gh.lazySingletonAsync<_i3.ClientInfo>(
+    () => local.info(get<_i4.MindAIConfig>()),
+    preResolve: true,
+  );
+  gh.lazySingleton<_i5.Dio>(() => service.dio(get<_i4.MindAIConfig>()));
+  gh.lazySingleton<_i6.OpenAI>(() => openAIModule.openai());
+  gh.lazySingleton<_i7.OpenAIInterceptor>(
       () => openAIModule.openAIInter(get<_i4.MindAIConfig>()));
-  await gh.lazySingletonAsync<_i7.Supabase>(
+  await gh.lazySingletonAsync<_i8.Supabase>(
     () => backend.backend(get<_i4.MindAIConfig>()),
     registerFor: {_prod},
     preResolve: true,
   );
-  await gh.lazySingletonAsync<_i7.Supabase>(
+  await gh.lazySingletonAsync<_i8.Supabase>(
     () => backend.testBackend(get<_i4.MindAIConfig>()),
     registerFor: {
       _test,
@@ -51,20 +57,20 @@ Future<_i1.GetIt> $initGetIt(
     },
     preResolve: true,
   );
-  gh.lazySingleton<_i8.AppService>(() => service.appService(
-        get<_i3.Dio>(),
-        get<_i7.Supabase>(),
+  gh.lazySingleton<_i3.AppService>(() => service.appService(
+        get<_i8.Supabase>(),
         get<_i4.MindAIConfig>(),
+        get<_i3.ClientInfo>(),
       ));
-  gh.lazySingleton<_i8.ChatService>(() => service.chatService(
-        get<_i3.Dio>(),
-        get<_i7.Supabase>(),
-        get<_i5.OpenAI>(),
+  gh.lazySingleton<_i3.ChatService>(() => service.chatService(
+        get<_i5.Dio>(),
+        get<_i8.Supabase>(),
+        get<_i6.OpenAI>(),
       ));
-  gh.lazySingleton<List<_i3.Interceptor>>(
+  gh.lazySingleton<List<_i5.Interceptor>>(
     () => openAIModule.openaiInterceptor(
       get<_i4.MindAIConfig>(),
-      get<_i6.OpenAIInterceptor>(),
+      get<_i7.OpenAIInterceptor>(),
     ),
     instanceName: 'OpenAI',
     registerFor: {
@@ -73,18 +79,20 @@ Future<_i1.GetIt> $initGetIt(
       _prod,
     },
   );
-  gh.lazySingleton<_i3.Dio>(
+  gh.lazySingleton<_i5.Dio>(
     () => openAIModule.openaiDio(
       get<_i4.MindAIConfig>(),
-      get<List<_i3.Interceptor>>(instanceName: 'OpenAI'),
+      get<List<_i5.Interceptor>>(instanceName: 'OpenAI'),
     ),
     instanceName: 'OpenAI',
   );
   return get;
 }
 
-class _$Service extends _i8.Service {}
+class _$Local extends _i9.Local {}
 
-class _$OpenAIModule extends _i6.OpenAIModule {}
+class _$Service extends _i3.Service {}
 
-class _$Backend extends _i6.Backend {}
+class _$OpenAIModule extends _i7.OpenAIModule {}
+
+class _$Backend extends _i7.Backend {}

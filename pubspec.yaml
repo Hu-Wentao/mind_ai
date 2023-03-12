@@ -60,6 +60,8 @@ dependencies:
       url: https://github.com/Hu-Wentao/openai.git
       ref: main
   dio_intercept_to_curl:
+  platform_info:
+  fingerprintjs:
 
 dev_dependencies:
   flutter_test:
