@@ -27,7 +27,7 @@ class AppService {
     if (id == null) throw Exception('获取设备ID失败');
     // 注册匿名登陆
     backend.regAnnoAcct(
-      platformId: id,
+      deviceId: id,
       platform: Platform.operatingSystem,
     );
     return id;

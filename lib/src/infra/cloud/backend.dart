@@ -64,19 +64,19 @@ extension SupabaseX on Supabase {
   static const pubOpenAIKeyOwnerId = '19b870cc-9c9c-4ac2-995b-8de81fb55afd';
 
   Future<Map<String, dynamic>?> regAnnoAcct({
-    required String platformId,
+    required String deviceId,
     required String platform,
   }) async {
     const tbAnnoAcct = 'anno_acct';
     const coUserIdTbAnnoAct = 'user_id';
-    const coPlatformIdTbAnnoAct = 'platform_id';
+    const coDeviceIdTbAnnoAct = 'device_id';
     const coPlatformTbAnnoAct = 'platform';
     final List<dynamic> rsp = await client
         .from(tbAnnoAcct)
-        .select("$coPlatformIdTbAnnoAct, $coUserIdTbAnnoAct")
+        .select("$coDeviceIdTbAnnoAct, $coUserIdTbAnnoAct")
         .eq(
-          coPlatformIdTbAnnoAct,
-          platformId,
+          coDeviceIdTbAnnoAct,
+          deviceId,
         );
     // log("regAnnoAcct $rsp");
     // 非空，表示已经匿名注册
@@ -84,7 +84,7 @@ extension SupabaseX on Supabase {
     if (rsp.isNotEmpty) return rsp.first;
     // 返回null
     await client.from(tbAnnoAcct).insert({
-      coPlatformIdTbAnnoAct: platformId,
+      coDeviceIdTbAnnoAct: deviceId,
       coPlatformTbAnnoAct: platform,
     });
     return null;
