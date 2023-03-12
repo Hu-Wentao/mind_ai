@@ -1504,18 +1504,21 @@ mixin _$AcctEvt {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() createChat,
+    required TResult Function(String id) chatCreated,
     required TResult Function() loadChats,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? createChat,
+    TResult? Function(String id)? chatCreated,
     TResult? Function()? loadChats,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? createChat,
+    TResult Function(String id)? chatCreated,
     TResult Function()? loadChats,
     required TResult orElse(),
   }) =>
@@ -1523,18 +1526,21 @@ mixin _$AcctEvt {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_AcctEvtCreateChat value) createChat,
+    required TResult Function(_AcctEvtChatCreated value) chatCreated,
     required TResult Function(_AcctEvtLoadChats value) loadChats,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_AcctEvtCreateChat value)? createChat,
+    TResult? Function(_AcctEvtChatCreated value)? chatCreated,
     TResult? Function(_AcctEvtLoadChats value)? loadChats,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_AcctEvtCreateChat value)? createChat,
+    TResult Function(_AcctEvtChatCreated value)? chatCreated,
     TResult Function(_AcctEvtLoadChats value)? loadChats,
     required TResult orElse(),
   }) =>
@@ -1597,6 +1603,7 @@ class _$_AcctEvtCreateChat implements _AcctEvtCreateChat {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() createChat,
+    required TResult Function(String id) chatCreated,
     required TResult Function() loadChats,
   }) {
     return createChat();
@@ -1606,6 +1613,7 @@ class _$_AcctEvtCreateChat implements _AcctEvtCreateChat {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? createChat,
+    TResult? Function(String id)? chatCreated,
     TResult? Function()? loadChats,
   }) {
     return createChat?.call();
@@ -1615,6 +1623,7 @@ class _$_AcctEvtCreateChat implements _AcctEvtCreateChat {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? createChat,
+    TResult Function(String id)? chatCreated,
     TResult Function()? loadChats,
     required TResult orElse(),
   }) {
@@ -1628,6 +1637,7 @@ class _$_AcctEvtCreateChat implements _AcctEvtCreateChat {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_AcctEvtCreateChat value) createChat,
+    required TResult Function(_AcctEvtChatCreated value) chatCreated,
     required TResult Function(_AcctEvtLoadChats value) loadChats,
   }) {
     return createChat(this);
@@ -1637,6 +1647,7 @@ class _$_AcctEvtCreateChat implements _AcctEvtCreateChat {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_AcctEvtCreateChat value)? createChat,
+    TResult? Function(_AcctEvtChatCreated value)? chatCreated,
     TResult? Function(_AcctEvtLoadChats value)? loadChats,
   }) {
     return createChat?.call(this);
@@ -1646,6 +1657,7 @@ class _$_AcctEvtCreateChat implements _AcctEvtCreateChat {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_AcctEvtCreateChat value)? createChat,
+    TResult Function(_AcctEvtChatCreated value)? chatCreated,
     TResult Function(_AcctEvtLoadChats value)? loadChats,
     required TResult orElse(),
   }) {
@@ -1658,6 +1670,146 @@ class _$_AcctEvtCreateChat implements _AcctEvtCreateChat {
 
 abstract class _AcctEvtCreateChat implements AcctEvt {
   const factory _AcctEvtCreateChat() = _$_AcctEvtCreateChat;
+}
+
+/// @nodoc
+abstract class _$$_AcctEvtChatCreatedCopyWith<$Res> {
+  factory _$$_AcctEvtChatCreatedCopyWith(_$_AcctEvtChatCreated value,
+          $Res Function(_$_AcctEvtChatCreated) then) =
+      __$$_AcctEvtChatCreatedCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String id});
+}
+
+/// @nodoc
+class __$$_AcctEvtChatCreatedCopyWithImpl<$Res>
+    extends _$AcctEvtCopyWithImpl<$Res, _$_AcctEvtChatCreated>
+    implements _$$_AcctEvtChatCreatedCopyWith<$Res> {
+  __$$_AcctEvtChatCreatedCopyWithImpl(
+      _$_AcctEvtChatCreated _value, $Res Function(_$_AcctEvtChatCreated) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+  }) {
+    return _then(_$_AcctEvtChatCreated(
+      null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_AcctEvtChatCreated implements _AcctEvtChatCreated {
+  const _$_AcctEvtChatCreated(this.id);
+
+  @override
+  final String id;
+
+  @override
+  String toString() {
+    return 'AcctEvt.chatCreated(id: $id)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_AcctEvtChatCreated &&
+            (identical(other.id, id) || other.id == id));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_AcctEvtChatCreatedCopyWith<_$_AcctEvtChatCreated> get copyWith =>
+      __$$_AcctEvtChatCreatedCopyWithImpl<_$_AcctEvtChatCreated>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() createChat,
+    required TResult Function(String id) chatCreated,
+    required TResult Function() loadChats,
+  }) {
+    return chatCreated(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? createChat,
+    TResult? Function(String id)? chatCreated,
+    TResult? Function()? loadChats,
+  }) {
+    return chatCreated?.call(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? createChat,
+    TResult Function(String id)? chatCreated,
+    TResult Function()? loadChats,
+    required TResult orElse(),
+  }) {
+    if (chatCreated != null) {
+      return chatCreated(id);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_AcctEvtCreateChat value) createChat,
+    required TResult Function(_AcctEvtChatCreated value) chatCreated,
+    required TResult Function(_AcctEvtLoadChats value) loadChats,
+  }) {
+    return chatCreated(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_AcctEvtCreateChat value)? createChat,
+    TResult? Function(_AcctEvtChatCreated value)? chatCreated,
+    TResult? Function(_AcctEvtLoadChats value)? loadChats,
+  }) {
+    return chatCreated?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_AcctEvtCreateChat value)? createChat,
+    TResult Function(_AcctEvtChatCreated value)? chatCreated,
+    TResult Function(_AcctEvtLoadChats value)? loadChats,
+    required TResult orElse(),
+  }) {
+    if (chatCreated != null) {
+      return chatCreated(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AcctEvtChatCreated implements AcctEvt {
+  const factory _AcctEvtChatCreated(final String id) = _$_AcctEvtChatCreated;
+
+  String get id;
+  @JsonKey(ignore: true)
+  _$$_AcctEvtChatCreatedCopyWith<_$_AcctEvtChatCreated> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -1699,6 +1851,7 @@ class _$_AcctEvtLoadChats implements _AcctEvtLoadChats {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() createChat,
+    required TResult Function(String id) chatCreated,
     required TResult Function() loadChats,
   }) {
     return loadChats();
@@ -1708,6 +1861,7 @@ class _$_AcctEvtLoadChats implements _AcctEvtLoadChats {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? createChat,
+    TResult? Function(String id)? chatCreated,
     TResult? Function()? loadChats,
   }) {
     return loadChats?.call();
@@ -1717,6 +1871,7 @@ class _$_AcctEvtLoadChats implements _AcctEvtLoadChats {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? createChat,
+    TResult Function(String id)? chatCreated,
     TResult Function()? loadChats,
     required TResult orElse(),
   }) {
@@ -1730,6 +1885,7 @@ class _$_AcctEvtLoadChats implements _AcctEvtLoadChats {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_AcctEvtCreateChat value) createChat,
+    required TResult Function(_AcctEvtChatCreated value) chatCreated,
     required TResult Function(_AcctEvtLoadChats value) loadChats,
   }) {
     return loadChats(this);
@@ -1739,6 +1895,7 @@ class _$_AcctEvtLoadChats implements _AcctEvtLoadChats {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_AcctEvtCreateChat value)? createChat,
+    TResult? Function(_AcctEvtChatCreated value)? chatCreated,
     TResult? Function(_AcctEvtLoadChats value)? loadChats,
   }) {
     return loadChats?.call(this);
@@ -1748,6 +1905,7 @@ class _$_AcctEvtLoadChats implements _AcctEvtLoadChats {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_AcctEvtCreateChat value)? createChat,
+    TResult Function(_AcctEvtChatCreated value)? chatCreated,
     TResult Function(_AcctEvtLoadChats value)? loadChats,
     required TResult orElse(),
   }) {

@@ -15,6 +15,8 @@ class ChatModel extends SidecarModel<ChatEvt, String> {
     model_id: 'model_id',
   );
 
+  String sk = '';
+
   ChatModel({required super.id});
 
   factory ChatModel.create() => ChatModel(id: cuid());
@@ -27,6 +29,13 @@ class ChatModel extends SidecarModel<ChatEvt, String> {
 
   ask(String msg) async {
     if (msg.isEmpty) return;
+    // 检查sk
+    if (sk.isEmpty) {
+      sk = await _chatSrv.getSk();
+    }
+    log('sk [$sk]');
+
+    //
     final content = Gpt35ChoicesDto(
       index: state.content.length,
       message: MsgGpt35ContentDto(
@@ -37,12 +46,15 @@ class ChatModel extends SidecarModel<ChatEvt, String> {
     );
     state = state.addContent(content);
 
-    setState('ask [$msg]');
+    // setState('ask [$msg]');
     // 不发送全部历史，从finish_reason == stop截取
     // 普通用户给3轮对话，注册用户给5轮对话
     final sender = state.toReqByStop(stop: 3);
-    setState('ask.send [$sender]');
-    final nMsg = await chatService.chat(sender);
+    setState('ask.send [${sender.toJson()}]');
+    final nMsg = await _chatSrv.chat(
+      sk: sk,
+      msg: sender,
+    );
     add(ChatEvt.receive(nMsg));
   }
 
@@ -51,5 +63,5 @@ class ChatModel extends SidecarModel<ChatEvt, String> {
     setState('receive [$rsp]');
   }
 
-  ChatService get chatService => sl<ChatService>();
+  ChatService get _chatSrv => sl<ChatService>();
 }

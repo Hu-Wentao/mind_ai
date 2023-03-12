@@ -18,36 +18,19 @@ class AppService {
     return info;
   }
 
+  Stream<AuthState> authStateChange() => backend.client.auth.onAuthStateChange;
+
   Future<String> login() async {
-    // 匿名登陆
+    // todo 考虑接入supa自动登陆，避免设备登陆与session恢复冲突
+    // 匿名登陆（设备登陆）
     final id = await PlatformDeviceId.getDeviceId;
     if (id == null) throw Exception('获取设备ID失败');
-    // 标记匿名登陆
-    _regAnnoAcct(platformId: id, platform: Platform.operatingSystem);
+    // 注册匿名登陆
+    backend.regAnnoAcct(
+      platformId: id,
+      platform: Platform.operatingSystem,
+    );
     return id;
-  }
-
-  Future<void> _regAnnoAcct({
-    required String platformId,
-    required String platform,
-  }) async {
-    const tbAnnoAcct = 'anno_acct';
-    const coUserIdTbAnnoAct = 'user_id';
-    const coPlatformIdTbAnnoAct = 'platform_id';
-    final rsp = await backend.client
-        .from(tbAnnoAcct)
-        .select("$coPlatformIdTbAnnoAct, $coUserIdTbAnnoAct")
-        .eq(
-          coPlatformIdTbAnnoAct,
-          platformId,
-        );
-    print(
-        "debug _regAnnoAcct rsp: $rsp, isJs ${rsp is Map<String, dynamic>}, isList ${rsp is List<dynamic>}");
-
-    return await backend.client.from(tbAnnoAcct).insert({
-      "platform_uuid": platformId,
-      "platform": platform,
-    });
   }
 }
 

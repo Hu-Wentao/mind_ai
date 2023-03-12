@@ -28,8 +28,32 @@ class AppModel extends SidecarModel<AppEvt, String> {
   AcctModel? chosenAcct;
 
   AppModel({super.id = ''}) {
-    // 创建Provider时检查更新
-    add(const AppEvt.checkUpdate());
+    _appSrv.authStateChange().listen((event) {
+      log('authStateChange: $event');
+      switch (event.event) {
+        case AuthChangeEvent.passwordRecovery:
+          // TODO: Handle this case.
+          break;
+        case AuthChangeEvent.signedIn:
+          // TODO: Handle this case.
+          break;
+        case AuthChangeEvent.signedOut:
+          // TODO: Handle this case.
+          break;
+        case AuthChangeEvent.tokenRefreshed:
+          // TODO: Handle this case.
+          break;
+        case AuthChangeEvent.userUpdated:
+          // TODO: Handle this case.
+          break;
+        case AuthChangeEvent.userDeleted:
+          // TODO: Handle this case.
+          break;
+        case AuthChangeEvent.mfaChallengeVerified:
+          // TODO: Handle this case.
+          break;
+      }
+    });
   }
 
   @override
@@ -49,14 +73,10 @@ extension AppAcctX on AppModel {
   login() async {
     // todo 先尝试通过本地token登陆
     // 匿名登陆
-    await appService.login().then(
-      (deviceId) {
-        add(AppEvt.logged(deviceId));
-      },
-      onError: (e, s) {
-        add(AppEvt.loginError(e.toString()));
-      },
-    );
+    await _appSrv.login().then(
+          (deviceId) => add(AppEvt.logged(deviceId)),
+          onError: (e, s) => add(AppEvt.loginError(e.toString())),
+        );
   }
 
   logged(String uid) {
@@ -65,19 +85,21 @@ extension AppAcctX on AppModel {
   }
 
   logout() {
-    //
+    // fixme 登陆是acct方法，考虑改为"注销指定账户"
     setState('用户登出');
   }
 
   loginError(String error) {
     //
   }
+
+  AppService get _appSrv => sl<AppService>();
 }
 
 extension AppVersionX on AppModel {
   // 检查更新
   checkUpdate() async {
-    final info = await appService.checkVersion();
+    final info = await _appSrv.checkVersion();
     if (info != null) {
       add(AppEvt.needUpdate(info));
     }
@@ -109,6 +131,4 @@ extension AppVersionX on AppModel {
     await AzhonAppUpdate.update(model);
     return null;
   }
-
-  AppService get appService => sl<AppService>();
 }

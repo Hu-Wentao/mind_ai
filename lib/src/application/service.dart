@@ -1,14 +1,17 @@
 import 'dart:io';
 
+import 'package:dart_openai/openai.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:get_arch_core/get_arch_core.dart';
 import 'package:mind_ai/src/application.dart';
+import 'package:mind_ai/src/infra/cloud/backend.dart';
 import 'package:platform_device_id/platform_device_id.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../domain/domain.dart';
+import '../inter/inter.dart';
 
 part 'service.freezed.dart';
 
@@ -44,5 +47,6 @@ abstract class Service {
       AppService(dio, s, cfg);
 
   @lazySingleton
-  ChatService chatService(Dio dio) => ChatService(dio);
+  ChatService chatService(Dio dio, Supabase b, OpenAI o) =>
+      ChatService(dio, b, o);
 }

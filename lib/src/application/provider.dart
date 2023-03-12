@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter_app_update/update_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:get_arch_core/get_arch_core.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import 'service.dart';
 import '../domain/domain.dart';
 import 'package:provider_sidecar/provider_sidecar.dart';
