@@ -101,6 +101,7 @@ class _ChatScreenState extends State<ChatScreen>
             children: <Widget>[
               Expanded(
                 child: SingleChildScrollView(
+                  padding: const EdgeInsets.only(bottom: 12),
                   controller: scrollController,
                   reverse: true,
                   child: Column(
