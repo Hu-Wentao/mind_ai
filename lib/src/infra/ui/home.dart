@@ -86,8 +86,10 @@ class _HomePageState extends State<HomePage>
             onPressed: () => showConfirmDialog(
               context: context,
               title: "是否要提交 问题反馈/功能建议 ？",
-              onConfirm: () =>
-                  launchUrl(Uri.parse('https://support.qq.com/product/514606')),
+              onConfirm: () => launchUrl(
+                Uri.parse('https://support.qq.com/product/514606'),
+                mode: LaunchMode.externalApplication,
+              ),
             ),
             icon: const Icon(Icons.feedback_rounded),
           ),
