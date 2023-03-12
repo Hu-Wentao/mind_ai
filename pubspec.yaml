@@ -31,7 +31,7 @@ dependencies:
   flutter:
     sdk: flutter
   dio:
-  cupertino_icons: ^1.0.5
+#  cupertino_icons: ^1.0.5
   freezed_annotation:
   json_annotation:
   dio_logging_interceptor:
