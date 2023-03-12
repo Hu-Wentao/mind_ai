@@ -1,37 +1,50 @@
 PODS:
+  - app_links (0.0.1):
+    - Flutter
   - device_info (0.0.1):
     - Flutter
   - Flutter (1.0.0)
   - flutter_app_update (0.0.1):
     - Flutter
+  - path_provider_foundation (0.0.1):
+    - Flutter
+    - FlutterMacOS
   - platform_device_id (0.0.1):
     - Flutter
   - url_launcher_ios (0.0.1):
     - Flutter
 
 DEPENDENCIES:
+  - app_links (from `.symlinks/plugins/app_links/ios`)
   - device_info (from `.symlinks/plugins/device_info/ios`)
   - Flutter (from `Flutter`)
   - flutter_app_update (from `.symlinks/plugins/flutter_app_update/ios`)
+  - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/ios`)
   - platform_device_id (from `.symlinks/plugins/platform_device_id/ios`)
   - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
 
 EXTERNAL SOURCES:
+  app_links:
+    :path: ".symlinks/plugins/app_links/ios"
   device_info:
     :path: ".symlinks/plugins/device_info/ios"
   Flutter:
     :path: Flutter
   flutter_app_update:
     :path: ".symlinks/plugins/flutter_app_update/ios"
+  path_provider_foundation:
+    :path: ".symlinks/plugins/path_provider_foundation/ios"
   platform_device_id:
     :path: ".symlinks/plugins/platform_device_id/ios"
   url_launcher_ios:
     :path: ".symlinks/plugins/url_launcher_ios/ios"
 
 SPEC CHECKSUMS:
+  app_links: ab4ba54d10a13d45825336bc9707b5eadee81191
   device_info: d7d233b645a32c40dfdc212de5cf646ca482f175
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
   flutter_app_update: 65f61da626cb111d1b24674abc4b01728d7723bc
+  path_provider_foundation: c68054786f1b4f3343858c1e1d0caaded73f0be9
   platform_device_id: 81b3e2993881f87d0c82ef151dc274df4869aef5
   url_launcher_ios: 08a3dfac5fb39e8759aeb0abbd5d9480f30fc8b4
 

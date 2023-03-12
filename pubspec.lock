@@ -216,7 +216,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "25421d5cc0595445ae174b145e347dbf9f0cb0c9"
+      resolved-ref: "351b70c44e2cda9d778ba6da14973ef9e4dd2d46"
       url: "https://github.com/Hu-Wentao/openai.git"
     source: git
     version: "1.8.0"
@@ -255,6 +255,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.6"
+  dio_intercept_to_curl:
+    dependency: "direct main"
+    description:
+      name: dio_intercept_to_curl
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.7"
   dio_logging_interceptor:
     dependency: "direct main"
     description:

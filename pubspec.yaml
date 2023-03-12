@@ -59,6 +59,7 @@ dependencies:
     git:
       url: https://github.com/Hu-Wentao/openai.git
       ref: main
+  dio_intercept_to_curl:
 
 dev_dependencies:
   flutter_test:

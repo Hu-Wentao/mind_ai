@@ -36,7 +36,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   app_links: 4481ed4d71f384b0c3ae5016f4633aa73d32ff67
-  FlutterMacOS: 8f6f14fa908a6fb3fba0cd85dbd81ec4b251fb24
+  FlutterMacOS: ae6af50a8ea7d6103d888583d46bd8328a7e9811
   path_provider_foundation: c68054786f1b4f3343858c1e1d0caaded73f0be9
   platform_device_id: 3e414428f45df149bbbfb623e2c0ca27c545b763
   platform_device_id_macos: f763bb55f088be804d61b96eb4710b8ab6598e94
