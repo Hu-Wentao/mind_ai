@@ -9,10 +9,9 @@ class AppService {
 
   /// 检查App更新，如果没有更新返回null
   Future<AppUpdateInfo?> checkVersion() async {
-    final rsp = await backend.client.functions.invoke('version_check', body: {
-      "platform": _info.platform,
-      'v': cfg.version,
-    });
+    // v1.2 迁移到CF中的 client_check
+    final rsp = await backend.client.functions
+        .invoke('version_check', body: _info.toJson());
     final info = AppUpdateInfo.fromJson(rsp.data);
     if (info.version == cfg.version) return null;
     return info;
