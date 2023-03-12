@@ -52,4 +52,16 @@ main() async {
       ).printProcess();
     },
   );
+  await pipelineBuildArtifact(
+    ArtifactTp.ipa,
+    ArtifactBuildTp.release,
+    EnvSign.prod,
+    projName: projName,
+    specVersion: setVersion,
+    onBuildSuccess: (artifactPath, artifactFile) async {
+      await distributorPublish(
+        artifactPath: artifactPath,
+      ).printProcess();
+    },
+  );
 }
