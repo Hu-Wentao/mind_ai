@@ -1,3 +1,4 @@
+import '__pip_build_web.dart';
 import '_pip_build_artifact.dart';
 import 'utils.dart';
 import 'utils_build_artifact.dart';
@@ -8,10 +9,10 @@ import 'utils_spec_file.dart';
 
 main() async {
   /// 手动配置 ==============
-  const setVersion = '1.0.4';
+  const setVersion = '1.1.0';
   final commitMsg = buildCommit(
     specVersion: setVersion,
-    feat: "添加版本检查更新，安卓自动更新功能",
+    feat: "连接后端，初步完成聊天功能，适配web",
     // fix: "",
     // refactor: "",
     // doc:
@@ -39,6 +40,8 @@ main() async {
     message: commitMsg,
     ignoreFiles: [currentFilePath],
   ).printProcess();
+
+  await pipelineBuildWeb();
 
   await pipelineBuildArtifact(
     ArtifactTp.apk,
