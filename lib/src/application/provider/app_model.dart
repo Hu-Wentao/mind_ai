@@ -73,10 +73,8 @@ extension AppAcctX on AppModel {
   login() async {
     // todo 先尝试通过本地token登陆
     // 匿名登陆
-    await _appSrv.login().then(
-          (deviceId) => add(AppEvt.logged(deviceId)),
-          onError: (e, s) => add(AppEvt.loginError(e.toString())),
-        );
+    final deviceId = _appSrv.login();
+    add(AppEvt.logged(deviceId));
   }
 
   logged(String uid) {
