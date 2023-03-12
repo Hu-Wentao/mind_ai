@@ -58,7 +58,7 @@ const List<String> pre = <String>[];
 const List<String> build = <String>[];
 
 /// Build date in Unix Time (in seconds)
-const int timestamp = 1678297859;
+const int timestamp = 1678616420;
 
 /// Name [name]
 const String name = r'mind_ai';
@@ -83,7 +83,7 @@ const String publishTo = r'none';
 
 /// Environment
 const Map<String, String> environment = <String, String>{
-  'sdk': '>=2.19.3 <3.0.0',
+  'sdk': '>=2.17.6 <3.0.0',
 };
 
 /// Dependencies
@@ -92,7 +92,6 @@ const Map<String, Object> dependencies = <String, Object>{
     'sdk': r'flutter',
   },
   'cupertino_icons': r'^1.0.5',
-  'json_annotation': r'>=4.8.0',
   'provider_sidecar': <String, Object>{
     'path': r'../../../IdeaProjects/provider_sidecar',
   },
@@ -100,6 +99,18 @@ const Map<String, Object> dependencies = <String, Object>{
     'git': <String, Object>{
       'url': r'https://e.coding.net/shuttlecloud/company/get_arch_core.git',
       'ref': r'v3.0',
+    },
+  },
+  'get_sweet': <String, Object>{
+    'git': <String, Object>{
+      'url': r'https://gitee.com/hu_wt/get_sweet',
+      'ref': r'main',
+    },
+  },
+  'dart_openai': <String, Object>{
+    'git': <String, Object>{
+      'url': r'https://github.com/Hu-Wentao/openai.git',
+      'ref': r'main',
     },
   },
 };
@@ -113,7 +124,10 @@ const Map<String, Object> devDependencies = <String, Object>{
 };
 
 /// Dependency overrides
-const Map<String, Object> dependencyOverrides = <String, Object>{};
+const Map<String, Object> dependencyOverrides = <String, Object>{
+  'collection': r'^1.16.0',
+  'dio': r'^4.0.0',
+};
 
 /// Executables
 const Map<String, Object> executables = <String, Object>{};
