@@ -4,6 +4,8 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:mind_ai/src/application/provider.dart';
 import 'package:mind_ai/src/domain/domain.dart';
+import 'package:mind_ai/src/infra/ui/router.dart';
+import 'package:mind_ai/src/infra/ui/widget.dart';
 import 'package:provider_sidecar/provider_sidecar_ex.dart';
 
 class ChatPage extends StatefulWidget {
@@ -23,7 +25,12 @@ class _ChatPageState extends State<ChatPage> {
       create: (_) => null,
       update: (c, m, b) =>
           m?.chats.firstWhereOrNull((e) => e.id == widget.chatId),
-      child: const ChatScreen(),
+      child: MdScaffold(
+        appBar: AppBar(
+          title: const Text("MindAI Chat"),
+        ),
+        body: const ChatScreen(),
+      ),
     );
   }
 }
@@ -38,7 +45,7 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen>
-    with OnInitStateMx<ChatScreen, ChatModel> {
+    with OnInitStateMx<ChatScreen, AcctModel?> {
   late final TextEditingController controller;
   late final ScrollController scrollController;
 
@@ -50,8 +57,10 @@ class _ChatScreenState extends State<ChatScreen>
   }
 
   @override
-  StreamSubscription? onInitState(ScaffoldMessengerState msgr, ChatModel a) {
-    return null;
+  StreamSubscription? onInitState(ScaffoldMessengerState msgr, AcctModel? a) {
+    return a?.events.listen((e) {
+      e.whenOrNull(chatCreated: (id) => ChatRoute(chatId: id).go(context));
+    });
   }
 
   @override
@@ -62,11 +71,10 @@ class _ChatScreenState extends State<ChatScreen>
         builder: (c, mChat, _) {
           if (mChat == null) {
             return Center(
-                child: TextButton(
-                    onPressed: () {
-                      c.read<AcctModel>().createChat();
-                    },
-                    child: Text("新建聊天")));
+              child: TextButton(
+                  onPressed: () => c.read<AcctModel>().createChat(),
+                  child: const Text("新建聊天")),
+            );
           }
 
           return Column(
@@ -118,7 +126,6 @@ class _ChatScreenState extends State<ChatScreen>
   }
 }
 
-
 class ChatModelSwitcher extends StatefulWidget {
   const ChatModelSwitcher({
     super.key,
@@ -140,11 +147,11 @@ class _ChatModelSwitcherState extends State<ChatModelSwitcher> {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: DropdownButton(
+      child: DropdownButton<ModelTp>(
         value: chosenTp,
         selectedItemBuilder: (c) {
           final style =
-          Theme.of(c).textTheme.titleMedium!.copyWith(color: Colors.white);
+              Theme.of(c).textTheme.titleMedium!.copyWith(color: Colors.white);
           return [
             Center(child: Text('GPT-3.5', style: style)),
           ];

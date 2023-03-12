@@ -35,6 +35,8 @@ class ChatRoute extends GoRouteData {
 
   const ChatRoute({required this.chatId});
 
+  const ChatRoute.create({this.chatId = 'create'});
+
   @override
   build(context, state) => ChatPage(chatId: chatId);
 }
