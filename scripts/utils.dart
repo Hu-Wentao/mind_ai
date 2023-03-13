@@ -2,6 +2,39 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
+/// 对[Process]包装
+Future<Process> processWithLog(
+  String funName, // use camelCase
+  String executable,
+  List<String> arguments, {
+  bool openLog = true,
+  String? workingDirectory,
+  Map<String, String>? environment,
+  bool includeParentEnvironment = true,
+  bool runInShell = false,
+  ProcessStartMode mode = ProcessStartMode.normal,
+  void Function(String s) logPrint = print,
+}) async {
+  if (openLog) {
+    logPrint("${_toAbbreviation(funName)}# $executable ${arguments.join(' ')}");
+  }
+  return await Process.start(
+    executable,
+    arguments,
+    workingDirectory: workingDirectory,
+    environment: environment,
+    includeParentEnvironment: includeParentEnvironment,
+    runInShell: runInShell,
+    mode: mode,
+  );
+}
+
+String _toAbbreviation(String variableName) {
+  List<String> words = variableName.split(RegExp(r"(?=[A-Z])"));
+  String abbreviation = words.map((word) => word[0].toLowerCase()).join(".");
+  return abbreviation;
+}
+
 /// extension
 
 /// 打印 Process输出
