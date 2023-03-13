@@ -11,10 +11,11 @@ main() async {
 }
 
 pipelineBuildWeb() async {
+  final root = shScriptFileFolder.parentPath;
   await buildWeb(
     webRender: 'html',
     pwaStrategy: 'none',
-    defineFile: '../env/prod.json',
+    defineFile: '$root/env/prod.json',
   ).printProcess();
 
   await flutterWebOptimizer().printProcess();
