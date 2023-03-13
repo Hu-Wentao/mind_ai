@@ -5,13 +5,21 @@ import 'utils_runner.dart';
 import 'utils_spec_file.dart';
 
 main() async {
-  await cmdRunBuildRunner().printProcess();
-
+  // await cmdRunBuildRunner().printProcess();
+  //
   await pipelineBuildWeb();
+
+  // await peanutBuildWeb(
+  //   branch: 'prod_web',
+  //   msg: 'Build Web v1.1.0',
+  // ).printProcess();
 }
 
 pipelineBuildWeb() async {
   final root = shScriptFileFolder.parentPath;
+
+  await Process.start('rm', ['-rf', '$root/build/web/']);
+
   await buildWeb(
     webRender: 'html',
     pwaStrategy: 'none',
@@ -25,11 +33,12 @@ pipelineBuildWeb() async {
   // rm ../build/web/assets/NOTICES
   await Process.start('rm', ['../build/web/assets/NOTICES']);
 
-  final ver = cmdGetSpecVersion(shScriptFileFolder.parentPath);
-  await peanutBuildWeb(
-    branch: 'prod_web',
-    msg: 'Build Web $ver',
-  ).printProcess();
+  // final ver = cmdGetSpecVersion(shScriptFileFolder.parentPath);
+
+  // await peanutBuildWeb(
+  //   branch: 'prod_web',
+  //   msg: 'Build Web $ver',
+  // ).printProcess();
 }
 
 Future<Process> buildWeb({
