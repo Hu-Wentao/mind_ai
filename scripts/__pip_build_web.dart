@@ -1,8 +1,6 @@
 import 'dart:io';
 import 'utils.dart';
 import 'utils_file.dart';
-import 'utils_runner.dart';
-import 'utils_spec_file.dart';
 
 main() async {
   // await cmdRunBuildRunner().printProcess();
@@ -18,7 +16,7 @@ main() async {
 pipelineBuildWeb() async {
   final root = shScriptFileFolder.parentPath;
 
-  await Process.start('rm', ['-rf', '$root/build/web/']);
+  await processWithLog('removeOldWebBuild', 'rm', ['-rf', '$root/build/web/']);
 
   await buildWeb(
     webRender: 'html',
@@ -28,17 +26,22 @@ pipelineBuildWeb() async {
 
   await flutterWebOptimizer().printProcess();
 
-  // rm -rf ../build/web/canvaskit
-  await Process.start('rm', ['-rf', '../build/web/canvaskit']);
-  // rm ../build/web/assets/NOTICES
-  await Process.start('rm', ['../build/web/assets/NOTICES']);
+  // rm 移除canvasKit
+  await processWithLog(
+      'removeCanvaskit', 'rm', ['-rf', '$root/build/web/canvaskit']);
+  // rm 移除声明
+  await processWithLog(
+      'removeNotices', 'rm', ['$root/build/web/assets/NOTICES']);
 
-  // final ver = cmdGetSpecVersion(shScriptFileFolder.parentPath);
-
-  // await peanutBuildWeb(
-  //   branch: 'prod_web',
-  //   msg: 'Build Web $ver',
-  // ).printProcess();
+  // # 创建一个新分支并切换到该分支：
+  const newBranchName = 'prod_web';
+  await processWithLog(
+      'newBranch', 'git', ['checkout', '--orphan', newBranchName]);
+  // # 删除当前分支上的所有文件和提交记录：
+  await processWithLog('removeAllGitInBranch', 'git', ['rm', '-rf', '.']);
+  // # 全部删除，只保留 /build/web
+  await processWithLog(
+      'removeAllFileExclude', 'rm', ['-r', '$root/!(build/web)']);
 }
 
 Future<Process> buildWeb({
